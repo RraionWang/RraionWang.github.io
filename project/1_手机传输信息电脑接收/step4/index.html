@@ -12,13 +12,13 @@
         <meta name="author" content="Rraion Wang">
       
       
-        <link rel="canonical" href="https://rraionwang.github.io/project/1_%E6%89%8B%E6%9C%BA%E4%BC%A0%E8%BE%93%E4%BF%A1%E6%81%AF%E7%94%B5%E8%84%91%E6%8E%A5%E6%94%B6/step3/">
+        <link rel="canonical" href="https://rraionwang.github.io/project/1_%E6%89%8B%E6%9C%BA%E4%BC%A0%E8%BE%93%E4%BF%A1%E6%81%AF%E7%94%B5%E8%84%91%E6%8E%A5%E6%94%B6/step4/">
       
       
-        <link rel="prev" href="../step2/">
+        <link rel="prev" href="../step3/">
       
       
-        <link rel="next" href="../step4/">
+        <link rel="next" href="../../../powershell/ps1_%E5%9F%BA%E7%A1%80/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>step3 - HyperRraion</title>
+        <title>step4 - HyperRraion</title>
       
     
     
@@ -110,7 +110,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              step3
+              step4
             
           </span>
         </div>
@@ -623,6 +623,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../step3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    step3
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -635,29 +656,18 @@
         
       
       
-      <a href="./" class="md-nav__link md-nav__link--active">
-        
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
   
   <span class="md-ellipsis">
-    step3
+    step4
   </span>
   
 
-      </a>
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../step4/" class="md-nav__link">
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -666,6 +676,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-cpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 使用cpp
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-flaskpythonhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 使用flask&amp;python&amp;html
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -893,6 +941,32 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-cpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 使用cpp
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-flaskpythonhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 使用flask&amp;python&amp;html
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -906,160 +980,501 @@
                   
 
 
-<h1 id="_1">第三步：对数据文件进行解析存储到数据库</h1>
-<p>有时候如果进行实时解析可能实时性不够，这时候我们在手机端先进性数据收集，然后再进行解析和可视化。代码如下：
-编译指令为：<code>g++ store.cpp -o server -I"C:\Users\17347\Desktop\read\remote_opencv\opencv\sqlite3" -L. -lsqlite3 -lws2_32</code></p>
-<pre><code class="language-cpp">#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#include &lt;vector&gt;
-#include &lt;string&gt;
-#include &lt;ctime&gt;
-#include &lt;sqlite3.h&gt;
-#include &lt;sstream&gt; // 添加这个头文件以使用 stringstream
+<h1 id="_1">第四步：多种方式从数据库读取数据</h1>
+<h2 id="1-cpp">1. 使用cpp</h2>
+<h2 id="2-flaskpythonhtml">2. 使用flask&amp;python&amp;html</h2>
+<p>使用前端可以比较方便快速地进行可视化而不用配置太多环境</p>
+<pre><code class="language-python"> from flask import Flask, jsonify, request
+import sqlite3
 
-// 定义帧数据结构
-struct FrameData
-{
-  int frameNumber;
-  std::vector&lt;std::vector&lt;int&gt;&gt; data;
-};
+app = Flask(__name__, static_folder='../static', static_url_path='')
 
-// 获取当前时间戳，作为表名
-std::string getTimestamp()
-{
-  time_t now = time(0);
-  tm *ltm = localtime(&amp;now);
-  char timestamp[20];
-  sprintf(timestamp, &quot;%04d%02d%02d%02d%02d%02d&quot;, 1900 + ltm-&gt;tm_year, 1 + ltm-&gt;tm_mon, ltm-&gt;tm_mday, ltm-&gt;tm_hour, ltm-&gt;tm_min, ltm-&gt;tm_sec);
-  return std::string(timestamp);
-}
 
-// 创建SQLite数据库并插入数据
-bool insertDataToDatabase(const std::string &amp;tableName, const std::vector&lt;FrameData&gt; &amp;frames)
-{
-  sqlite3 *db;
-  char *errMsg = 0;
-  int rc = sqlite3_open(&quot;frame_data.db&quot;, &amp;db);
+# 获取所有表名的API
+@app.route('/api/tables', methods=['GET'])
+def get_table_names():
+    conn = sqlite3.connect('frame_data.db')
+    cursor = conn.cursor()
+    cursor.execute(&quot;SELECT name FROM sqlite_master WHERE type='table';&quot;)
+    tables = cursor.fetchall()
+    conn.close()
+    return jsonify([table[0] for table in tables])
 
-  if (rc)
-  {
-    std::cerr &lt;&lt; &quot;无法打开数据库: &quot; &lt;&lt; sqlite3_errmsg(db) &lt;&lt; std::endl;
-    return false;
-  }
+# 获取指定表中所有记录的帧编号API
+@app.route('/api/frames', methods=['GET'])
+def get_frame_numbers():
+    table_name = request.args.get('table')
+    if not table_name:
+        return jsonify({'error': 'Table name is required.'}), 400
 
-  // 创建表
-  std::string createTableSQL = &quot;CREATE TABLE IF NOT EXISTS &quot; + tableName + &quot; (FrameNumber INT, Data TEXT);&quot;;
-  rc = sqlite3_exec(db, createTableSQL.c_str(), 0, 0, &amp;errMsg);
-  if (rc != SQLITE_OK)
-  {
-    std::cerr &lt;&lt; &quot;创建表失败: &quot; &lt;&lt; errMsg &lt;&lt; std::endl;
-    sqlite3_free(errMsg);
-    sqlite3_close(db);
-    return false;
-  }
+    conn = sqlite3.connect('frame_data.db')
+    cursor = conn.cursor()
+    try:
+        cursor.execute(f&quot;SELECT FrameNumber FROM {table_name}&quot;)
+    except sqlite3.OperationalError as e:
+        return jsonify({'error': f'Table {table_name} not found or query failed.'}), 400
 
-  // 插入数据
-  for (const auto &amp;frame : frames)
-  {
-    std::string dataString;
-    for (const auto &amp;row : frame.data)
-    {
-      for (const auto &amp;value : row)
-      {
-        dataString += std::to_string(value) + &quot; &quot;;
+    frames = cursor.fetchall()
+    conn.close()
+
+    return jsonify([frame[0] for frame in frames])
+
+# 获取指定表和帧编号的数据API
+@app.route('/api/data', methods=['GET'])
+def get_frame_data():
+    table_name = request.args.get('table')
+    frame_number = request.args.get('frame')
+
+    if not table_name or not frame_number:
+        return jsonify({'error': 'Table name and frame number are required.'}), 400
+
+    conn = sqlite3.connect('frame_data.db')
+    cursor = conn.cursor()
+    try:
+        cursor.execute(f&quot;SELECT Data FROM {table_name} WHERE FrameNumber = ?&quot;, (frame_number,))
+        data = cursor.fetchone()
+
+        if data:
+            frame_data = data[0]
+            formatted_data = [list(map(int, row.split())) for row in frame_data.split(';') if row]
+            return jsonify(formatted_data)
+        else:
+            return jsonify({'error': 'No data found for the specified frame number.'}), 404
+    except sqlite3.OperationalError as e:
+        return jsonify({'error': f'Table {table_name} not found or query failed.'}), 400
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+</code></pre>
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+
+&lt;head&gt;
+  &lt;meta charset=&quot;UTF-8&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+  &lt;title&gt;Heatmap.js 示例&lt;/title&gt;
+  &lt;script src=&quot;https://cdn.jsdelivr.net/npm/heatmap.js&quot;&gt;&lt;/script&gt;
+  &lt;style&gt;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f7f7f7;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-top: 20px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* 左侧选择框 */
+    #controls {
+      flex: 0 0 300px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-right: 20px;
+    }
+
+    #controls label {
+      margin-right: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    #controls select,
+    #controls input {
+      padding: 8px;
+      margin: 10px 0;
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      color: #333;
+    }
+
+    #controls button {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    #controls button:hover {
+      background-color: #45a049;
+    }
+
+    #stopButton {
+      background-color: #f44336;
+    }
+
+    #stopButton:hover {
+      background-color: #e41f20;
+    }
+
+    #scrollButton {
+      background-color: #2196F3;
+    }
+
+    #scrollButton:hover {
+      background-color: #0b7dda;
+    }
+
+    /* 右侧热力图容器 */
+    #heatmapContainer {
+      position: relative;
+      flex-grow: 1;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #canvasOverlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    /* 小屏幕布局调整 */
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
       }
-      dataString += &quot;;&quot;; // 每行数据以分号分隔
+
+      #controls {
+        width: 100%;
+        margin-bottom: 20px;
+        margin-right: 0;
+      }
+
+      #heatmapContainer {
+        width: 100%;
+      }
     }
 
-    std::string insertSQL = &quot;INSERT INTO &quot; + tableName + &quot; (FrameNumber, Data) VALUES (&quot; +
-                            std::to_string(frame.frameNumber) + &quot;, '&quot; + dataString + &quot;');&quot;;
-    rc = sqlite3_exec(db, insertSQL.c_str(), 0, 0, &amp;errMsg);
-    if (rc != SQLITE_OK)
-    {
-      std::cerr &lt;&lt; &quot;插入数据失败: &quot; &lt;&lt; errMsg &lt;&lt; std::endl;
-      sqlite3_free(errMsg);
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 12px;
+      color: #777;
     }
-  }
+  &lt;/style&gt;
+&lt;/head&gt;
 
-  sqlite3_close(db);
-  return true;
-}
+&lt;body&gt;
 
-// 从文件读取帧数据
-std::vector&lt;FrameData&gt; readDataFromFile(const std::string &amp;filename)
-{
-  std::ifstream file(filename);
-  std::vector&lt;FrameData&gt; frames;
-  if (!file.is_open())
-  {
-    std::cerr &lt;&lt; &quot;无法打开文件&quot; &lt;&lt; std::endl;
-    return frames;
-  }
+  &lt;div class=&quot;container&quot;&gt;
+    &lt;!-- 左侧的选择框部分 --&gt;
+    &lt;div id=&quot;controls&quot;&gt;
+      &lt;label for=&quot;tableSelect&quot;&gt;选择数据库表格：&lt;/label&gt;
+      &lt;select id=&quot;tableSelect&quot;&gt;
+        &lt;option value=&quot;&quot;&gt;--请选择表格--&lt;/option&gt;
+      &lt;/select&gt;
 
-  std::string line;
-  int frameNumber = 0;
-  while (std::getline(file, line))
-  {
-    if (line.find(&quot;Frame:&quot;) != std::string::npos)
-    {
-      frameNumber = std::stoi(line.substr(line.find(&quot;Frame:&quot;) + 6));
+      &lt;label for=&quot;frameSelect&quot;&gt;选择帧编号：&lt;/label&gt;
+      &lt;select id=&quot;frameSelect&quot;&gt;
+        &lt;option value=&quot;&quot;&gt;--请选择帧--&lt;/option&gt;
+      &lt;/select&gt;
+
+      &lt;label for=&quot;intervalInput&quot;&gt;播放间隔（毫秒）：&lt;/label&gt;
+      &lt;input type=&quot;number&quot; id=&quot;intervalInput&quot; value=&quot;600&quot;&gt;
+
+      &lt;label for=&quot;heatmapWidth&quot;&gt;热力图宽度：&lt;/label&gt;
+      &lt;input type=&quot;number&quot; id=&quot;heatmapWidth&quot; value=&quot;800&quot;&gt;
+
+      &lt;label for=&quot;heatmapHeight&quot;&gt;热力图高度：&lt;/label&gt;
+      &lt;input type=&quot;number&quot; id=&quot;heatmapHeight&quot; value=&quot;1000&quot;&gt;
+
+      &lt;button id=&quot;playButton&quot;&gt;播放&lt;/button&gt;
+      &lt;button id=&quot;stopButton&quot;&gt;停止&lt;/button&gt;
+      &lt;button id=&quot;scrollButton&quot;&gt;滚轮切换&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 右侧的热力图部分 --&gt;
+    &lt;div id=&quot;heatmapContainer&quot;&gt;
+      &lt;canvas id=&quot;canvasOverlay&quot;&gt;&lt;/canvas&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;div class=&quot;footer&quot;&gt;
+    &lt;p&gt;© 2024 Heatmap Visualization | Made with ❤️&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;script&gt;
+    let playInterval = null;
+    let currentFrame = 0;
+    let heatmapInstance = null;
+    let scrollEnabled = false;
+    let scrollTimeout = null;
+
+    // 初始化 Heatmap 和 Canvas 容器
+    function initializeHeatmap() {
+      const heatmapContainer = document.getElementById('heatmapContainer');
+      const canvasOverlay = document.getElementById('canvasOverlay');
+      const heatmapWidth = parseInt(document.getElementById('heatmapWidth').value);
+      const heatmapHeight = parseInt(document.getElementById('heatmapHeight').value);
+
+      // 限制最小宽度和高度
+      const minWidth = 300;
+      const minHeight = 300;
+      const adjustedHeatmapWidth = Math.max(heatmapWidth, minWidth);
+      const adjustedHeatmapHeight = Math.max(heatmapHeight, minHeight);
+
+      // 设置热力图容器和 canvasOverlay 的大小
+      heatmapContainer.style.width = `${adjustedHeatmapWidth}px`;
+      heatmapContainer.style.height = `${adjustedHeatmapHeight}px`;
+      canvasOverlay.width = adjustedHeatmapWidth;
+      canvasOverlay.height = adjustedHeatmapHeight;
+
+      // 创建 heatmap 实例
+      heatmapInstance = h337.create({
+        container: heatmapContainer,
+        maxOpacity: 0.6,
+        radius: Math.min(adjustedHeatmapWidth / 10, adjustedHeatmapHeight / 10) / 2, // 动态调整 radius
+        blur: 0.85
+      });
+
+      // 调整 heatmap.js 内部生成的 canvas 尺寸
+      const heatmapCanvas = heatmapInstance._renderer.canvas;
+      heatmapCanvas.width = adjustedHeatmapWidth;
+      heatmapCanvas.height = adjustedHeatmapHeight;
     }
-    else if (line.find(&quot;[&quot;) != std::string::npos)
-    {
-      FrameData frame;
-      frame.frameNumber = frameNumber;
 
-      std::vector&lt;int&gt; row;
-      while (std::getline(file, line) &amp;&amp; line.find(&quot;ChannelEnd&quot;) == std::string::npos)
-      {
-        if (line.find(&quot;[&quot;) != std::string::npos)
-        {
-          std::stringstream ss(line);
-          std::string temp;
-          while (ss &gt;&gt; temp)
-          {
-            if (isdigit(temp[0]) || temp[0] == '-')
-            {
-              row.push_back(std::stoi(temp));
-            }
-          }
-          frame.data.push_back(row);
-          row.clear();
+    // 获取所有表名并填充下拉菜单
+    async function fetchTables() {
+      const response = await fetch('/api/tables');
+      const tables = await response.json();
+      const tableSelect = document.getElementById('tableSelect');
+      tables.forEach(table =&gt; {
+        const option = document.createElement('option');
+        option.value = table;
+        option.text = table;
+        tableSelect.appendChild(option);
+      });
+    }
+
+    // 根据选择的表名获取所有帧编号
+    async function fetchFrames(table) {
+      const response = await fetch(`/api/frames?table=${table}`);
+      const frames = await response.json();
+      const frameSelect = document.getElementById('frameSelect');
+      frameSelect.innerHTML = '&lt;option value=&quot;&quot;&gt;--请选择帧--&lt;/option&gt;'; // 重置帧编号下拉菜单
+      frames.forEach(frame =&gt; {
+        const option = document.createElement('option');
+        option.value = frame;
+        option.text = frame;
+        frameSelect.appendChild(option);
+      });
+    }
+
+    // 根据选择的表名和帧编号获取帧数据
+    async function fetchData(table, frame) {
+      if (!frame) {
+        console.error('Frame is not selected or invalid.');
+        return;
+      }
+
+      const response = await fetch(`/api/data?table=${table}&amp;frame=${frame}`);
+      if (!response.ok) {
+        console.error(`Failed to fetch data: ${response.statusText}`);
+        return;
+      }
+
+      const data = await response.json();
+      if (!Array.isArray(data) || !Array.isArray(data[0])) {
+        console.error('Data is not in the expected format.');
+        return;
+      }
+
+      renderHeatmap(data);
+    }
+
+    // 渲染 heatmap 数据
+    function renderHeatmap(data) {
+      const dataPoints = [];
+      const numRows = data.length;
+      const numCols = data[0].length;
+      const heatmapWidth = parseInt(document.getElementById('heatmapWidth').value);
+      const heatmapHeight = parseInt(document.getElementById('heatmapHeight').value);
+
+      // 设置 heatmap 和 canvasOverlay 的宽高
+      const adjustedHeatmapWidth = Math.max(heatmapWidth, 300);
+      const adjustedHeatmapHeight = Math.max(heatmapHeight, 300);
+      document.getElementById('heatmapContainer').style.width = `${adjustedHeatmapWidth}px`;
+      document.getElementById('heatmapContainer').style.height = `${adjustedHeatmapHeight}px`;
+      document.getElementById('canvasOverlay').width = adjustedHeatmapWidth;
+      document.getElementById('canvasOverlay').height = adjustedHeatmapHeight;
+
+      // 同步调整 heatmap.js 内部 canvas 的宽高
+      const heatmapCanvas = heatmapInstance._renderer.canvas;
+      heatmapCanvas.width = adjustedHeatmapWidth;
+      heatmapCanvas.height = adjustedHeatmapHeight;
+
+      // 根据数据生成 heatmap.js 所需的坐标点
+      for (let row = 0; row &lt; numRows; row++) {
+        for (let col = 0; col &lt; numCols; col++) {
+          dataPoints.push({
+            x: col * (adjustedHeatmapWidth / numCols) + (adjustedHeatmapWidth / numCols) / 2,  // 格子中心的x位置
+            y: row * (adjustedHeatmapHeight / numRows) + (adjustedHeatmapHeight / numRows) / 2,  // 格子中心的y位置
+            value: data[row][col]  // 值
+          });
         }
       }
 
-      frames.push_back(frame);
+      // 设置热力图数据
+      heatmapInstance.setData({
+        max: 100,  // 根据你的数据调整这个值
+        data: dataPoints
+      });
+
+      // 绘制数值到 Canvas
+      drawTextOnCanvas(data, numRows, numCols, adjustedHeatmapWidth, adjustedHeatmapHeight);
     }
-  }
 
-  file.close();
-  return frames;
-}
+    // 绘制数值到 Canvas
+    function drawTextOnCanvas(data, numRows, numCols, heatmapWidth, heatmapHeight) {
+      const canvas = document.getElementById('canvasOverlay');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      ctx.clearRect(0, 0, canvas.width, canvas.height); // 清空上一次绘制内容
+      ctx.font = '16px Arial';
+      ctx.fillStyle = 'black';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
 
-int main()
-{
-  std::string filename = &quot;a.txt&quot;; // 输入文件名
-  std::vector&lt;FrameData&gt; frames = readDataFromFile(filename);
+      // 绘制每个格子中的数值
+      for (let row = 0; row &lt; numRows; row++) {
+        for (let col = 0; col &lt; numCols; col++) {
+          const x = col * (heatmapWidth / numCols) + (heatmapWidth / numCols) / 2;
+          const y = row * (heatmapHeight / numRows) + (heatmapHeight / numRows) / 2;
+          const value = data[row][col];
+          ctx.fillText(value, x, y); // 在格子中心绘制文本
+        }
+      }
+    }
 
-  if (frames.empty())
-  {
-    std::cerr &lt;&lt; &quot;没有读取到有效数据&quot; &lt;&lt; std::endl;
-    return -1;
-  }
+    // 自动播放功能
+    function playFrames() {
+      const interval = parseInt(document.getElementById('intervalInput').value, 10);
+      if (!interval || interval &lt;= 0) return;
 
-  std::string tableName = &quot;FrameData_&quot; + getTimestamp();
-  if (insertDataToDatabase(tableName, frames))
-  {
-    std::cout &lt;&lt; &quot;数据已成功插入到表：&quot; &lt;&lt; tableName &lt;&lt; std::endl;
-  }
-  else
-  {
-    std::cerr &lt;&lt; &quot;数据插入失败&quot; &lt;&lt; std::endl;
-  }
+      playInterval = setInterval(() =&gt; {
+        const frameSelect = document.getElementById('frameSelect');
+        if (frameSelect.selectedIndex === -1) {
+          console.error('No frame selected.');
+          return;
+        }
+        currentFrame = (currentFrame + 1) % frameSelect.options.length;
+        frameSelect.selectedIndex = currentFrame;
+        fetchData(document.getElementById('tableSelect').value, frameSelect.value);
+      }, interval);
+    }
 
-  return 0;
-}
+    // 停止播放功能
+    function stopFrames() {
+      if (playInterval) {
+        clearInterval(playInterval);
+        playInterval = null;
+      }
+    }
 
+    // 滚轮切换功能
+    function toggleScrollFrames() {
+      if (scrollEnabled) {
+        // 停止滚轮切换
+        window.removeEventListener('wheel', handleScroll);
+        scrollEnabled = false;
+      } else {
+        // 启用滚轮切换
+        window.addEventListener('wheel', handleScroll);
+        scrollEnabled = true;
+      }
+    }
+
+    // 处理滚轮事件
+    function handleScroll(event) {
+      clearTimeout(scrollTimeout); // 重置滚轮停止计时器
+      const delta = Math.sign(event.deltaY);
+      const frameSelect = document.getElementById('frameSelect');
+
+      if (delta &gt; 0) {
+        // 向下滚动，下一帧
+        currentFrame = (currentFrame + 1) % frameSelect.options.length;
+      } else {
+        // 向上滚动，上一帧
+        currentFrame = (currentFrame - 1 + frameSelect.options.length) % frameSelect.options.length;
+      }
+
+      frameSelect.selectedIndex = currentFrame;
+      fetchData(document.getElementById('tableSelect').value, frameSelect.value);
+
+      // 如果滚轮停止 500ms 后没有继续滚动，停止更新热图
+      scrollTimeout = setTimeout(() =&gt; {
+        console.log(&quot;停止滚动，停止更新热图。&quot;);
+        stopFrames();
+      }, 500); // 500 毫秒作为检测停止的延迟时间
+    }
+
+    // 当用户选择表时，获取该表中的帧编号
+    document.getElementById('tableSelect').addEventListener('change', function () {
+      const selectedTable = this.value;
+      if (selectedTable) {
+        fetchFrames(selectedTable);
+      }
+    });
+
+    // 当用户选择帧时，获取该帧的数据
+    document.getElementById('frameSelect').addEventListener('change', function () {
+      const selectedFrame = this.value;
+      const selectedTable = document.getElementById('tableSelect').value;
+      if (selectedTable &amp;&amp; selectedFrame) {
+        currentFrame = this.selectedIndex;
+        fetchData(selectedTable, selectedFrame);
+      }
+    });
+
+    // 播放按钮点击
+    document.getElementById('playButton').addEventListener('click', function () {
+      playFrames();
+    });
+
+    // 停止按钮点击
+    document.getElementById('stopButton').addEventListener('click', function () {
+      stopFrames();
+    });
+
+    // 滚轮切换按钮点击
+    document.getElementById('scrollButton').addEventListener('click', function () {
+      toggleScrollFrames();
+    });
+
+    // 页面加载时获取所有表
+    fetchTables();
+    initializeHeatmap();
+  &lt;/script&gt;
+&lt;/body&gt;
+
+&lt;/html&gt;
 </code></pre>
 
 
