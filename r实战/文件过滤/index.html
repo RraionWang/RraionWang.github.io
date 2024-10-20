@@ -12,13 +12,9 @@
         <meta name="author" content="Rraion Wang">
       
       
-        <link rel="canonical" href="https://rraionwang.github.io/ship/ship/">
+        <link rel="canonical" href="https://rraionwang.github.io/r%E5%AE%9E%E6%88%98/%E6%96%87%E4%BB%B6%E8%BF%87%E6%BB%A4/">
       
       
-        <link rel="prev" href="../../powershell/ps1_%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86/">
-      
-      
-        <link rel="next" href="../../about/about/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +22,7 @@
     
     
       
-        <title>ToastMaster SHIP - HyperRraion</title>
+        <title>R实战：文件过滤 - HyperRraion</title>
       
     
     
@@ -110,7 +106,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ToastMaster SHIP
+              R实战：文件过滤
             
           </span>
         </div>
@@ -291,11 +287,9 @@
         
   
   
-    
   
-  
-    <li class="md-tabs__item md-tabs__item--active">
-      <a href="./" class="md-tabs__link">
+    <li class="md-tabs__item">
+      <a href="../../ship/ship/" class="md-tabs__link">
         
   
     
@@ -776,19 +770,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../ship/ship/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -797,7 +782,6 @@
   
 
       </a>
-      
     </li>
   
 
@@ -839,8 +823,59 @@
   
   
   
-    
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      正则表达式解读
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#readlineswritelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      readLines和WriteLines
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#greplgsub" class="md-nav__link">
+    <span class="md-ellipsis">
+      grepl和gsub
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -853,15 +888,56 @@
               <article class="md-content__inner md-typeset">
                 
                   
+  
+<nav class="md-tags" >
+  
+    
+    
+    
+      <a href="../../tags/#r" class="md-tag">R</a>
+    
+  
+</nav>
 
 
-<h1 id="_1">我和头马</h1>
+
+  <h1>R实战：文件过滤</h1>
+
+<h2 id="_1">目标</h2>
+<p>过滤文件中类似[1],[2]等这种行号列号，以及ChannelStart:   18,   32和Frame: 10841这样的行</p>
+<h2 id="_2">代码</h2>
+<pre><code class="language-r"># 读取文件
+data &lt;- readLines(&quot;./a.txt&quot;)
+
+# 过滤掉包含 'ChannelStart: 18, 32' 和 'ChannelEnd' 的行
+filtered_data &lt;- data[!grepl(&quot;ChannelStart:\\s+18,\\s+32|Frame:\\s+\\d+&quot;, data)]
+
+# 删除所有的方括号及其内部内容
+cleaned_data &lt;- gsub(&quot;\\[\\d+\\]&quot;, &quot;&quot;, filtered_data)
+
+# 输出到新的文本文件
+writeLines(cleaned_data, &quot;cleaned_output.txt&quot;)
+
+</code></pre>
+<h2 id="_3">正则表达式解读</h2>
+<ol>
+<li><code>ChannelStart:\\s+18,\\s+32</code>表示ChannelStart:+若干个空白字符+18+若干个空白字符+32</li>
+<li><code>Frame:\\s+\\d+</code>表示Frame:+若干个空白字符+若干个0-9的数字</li>
+<li><code>\\[\\d+\\]</code>表示[+多位数字+]，使用\为转义符避免转义</li>
+</ol>
+<h2 id="readlineswritelines">readLines和WriteLines</h2>
+<p>按行读和写</p>
+<h2 id="greplgsub">grepl和gsub</h2>
+<p>grepl会搜寻匹配成功的行，而gsub则只会匹配成功的字符串</p>
 
 
 
 
 
 
+
+  
+  
 
 
 
