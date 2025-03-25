@@ -1,18 +1,9 @@
 site_name: 狮子Rraion的网站
 site_url: https://RraionWang.github.io
 repo_url: https://github.com/RraionWang/RraionWang.github.io
+
 theme:
   name: 'material'
-
-
-markdown_extensions:
-  - toc:
-      permalink: True
-
-extra:
-  social:
-    - type: github
-      link: https://github.com/RraionWang
 
 
 
