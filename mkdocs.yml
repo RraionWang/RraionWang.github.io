@@ -10,7 +10,7 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/%E5%B2%A9%E6%9D%BE-%E6%B1%AA-7a469b357/
     - icon: fontawesome/brands/github  # 图标类型
-      link: https://github.com/RraionWang/RraionWang.github.io  # 链接地址
+      link: https://github.com/RraionWang # 链接地址
     - icon: fontawesome/brands/bilibili  # 图标类型
       link: https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0  # 链接地址
 
@@ -18,5 +18,5 @@ extra:
 nav:
   - Home: index.md
   - xiao:
-      - xiao: xiao/xiao.md
+      - xiao: Xiao/xiao.md
      
