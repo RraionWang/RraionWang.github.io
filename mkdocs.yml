@@ -15,3 +15,11 @@ extra:
   social:
     - type: github
       link: https://github.com/RraionWang
+
+
+
+nav:
+  - home: index.md
+  - xiao:
+      - xiao: xiao/subpage1.md
+      - 子页面2: xiao/subpage2.md
