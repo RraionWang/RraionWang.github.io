@@ -3,9 +3,7 @@ site_url: https://RraionWang.github.io
 repo_url: https://github.com/RraionWang/RraionWang.github.io
 theme:
   name: 'material'
-nav:
-  - Home: index.md
-  - Docs: docs/index.md
+
 
 markdown_extensions:
   - toc:
@@ -19,7 +17,7 @@ extra:
 
 
 nav:
-  - home: index.md
+  - Home: index.md
   - xiao:
-      - xiao: xiao/subpage1.md
-      - 子页面2: xiao/subpage2.md
+      - xiao: xiao/xiao.md
+     
