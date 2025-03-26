@@ -37,11 +37,10 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - xiao:
-      - xiao: Xiao/xiao.md
-      - 测试: Xiao/测试.md
   - 开源小项目:
-      - 项目1: Xiao/xiao.md
-      - 项目2: Xiao/测试.md
-
+      - 项目1: 开源小项目/测试1.md
+      - 项目2: 开源小项目/测试2.md
+  - 技术文章:
+      - 项目1: 技术文章/测试1.md
+      - 项目2: 技术文章/测试2.md
      

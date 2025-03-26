@@ -1,10 +1,12 @@
-# 欢迎来到狮子的小站
-
 # 个人简介
 
-- 柴火开源社区经理
-- 深圳SHIP头马俱乐部会员
-- 深圳SZDIY会员
+
+ <center><h1>![](assets/seeed.png) [Seeed](https://www.seeedstudio.com/)下辖[柴火开源社区](https://www.chaihuo.org/)经理 </h1></center>
+
+ <center><h1>![](assets/ship.jpg) 深圳[SHIP头马俱乐部](https://www.toastmasters.org/Find-a-Club/00982065-ship-toastmasters-club)会员</h1></center>
+
+ <center><h1>![](assets/szdiy.png) 深圳[SZDIY](https://szdiy.org/)会员 </h1></center>
+
 
 # 为什么狮子🦁的英文名是Rraion?
 首先悄咪咪告诉大家Rraion的标准读音，参考如下：
