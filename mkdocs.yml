@@ -3,7 +3,20 @@ site_url: https://RraionWang.github.io
 repo_url: https://github.com/RraionWang/RraionWang.github.io
 
 theme:
+  palette:
+    primary: black
   name: 'material'
+  logo: assets/logo.png
+  favicon: images/favicon.png
+  features:
+    - header.autohide
+    - navigation.tabs.sticky
+    - navigation.path
+    - toc.integrate
+  font:
+    text: Roboto Mono
+    language: zh
+
 
 extra:
   social:
@@ -14,9 +27,18 @@ extra:
     - icon: fontawesome/brands/bilibili  # 图标类型
       link: https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0  # 链接地址
 
+markdown_extensions:
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+
 
 nav:
   - Home: index.md
   - xiao:
       - xiao: Xiao/xiao.md
+      - 测试: Xiao/测试.md
      
