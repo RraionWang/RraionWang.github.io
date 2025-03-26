@@ -9,8 +9,7 @@ theme:
   logo: assets/logo.png
   favicon: images/favicon.png
   features:
-    - header.autohide
-    - navigation.tabs.sticky
+    - navigation.tabs
     - navigation.path
     - toc.integrate
   font:
@@ -41,4 +40,8 @@ nav:
   - xiao:
       - xiao: Xiao/xiao.md
       - 测试: Xiao/测试.md
+  - 开源小项目:
+      - 项目1: Xiao/xiao.md
+      - 项目2: Xiao/测试.md
+
      
