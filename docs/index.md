@@ -1,7 +1,7 @@
 # 个人简介
 ![狮子的签名](assets/signature.png)
 
- <center><h1>![](assets/seeed.png) [Seeed](https://www.seeedstudio.com/)下辖[柴火开源社区](https://www.chaihuo.org/)经理 </h1></center>
+ <center><h1>![](assets/seeed.png) [Seeed](https://www.seeedstudio.com/)[柴火开源社区](https://www.chaihuo.org/)经理 </h1></center>
 
  <center><h1>![](assets/ship.jpg) 深圳[SHIP头马俱乐部](https://www.toastmasters.org/Find-a-Club/00982065-ship-toastmasters-club)会员</h1></center>
 
