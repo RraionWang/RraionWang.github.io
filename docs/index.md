@@ -1,5 +1,5 @@
 # 个人简介
-
+![狮子的签名](assets/signature.png)
 
  <center><h1>![](assets/seeed.png) [Seeed](https://www.seeedstudio.com/)下辖[柴火开源社区](https://www.chaihuo.org/)经理 </h1></center>
 
@@ -8,7 +8,9 @@
  <center><h1>![](assets/szdiy.png) 深圳[SZDIY](https://szdiy.org/)会员 </h1></center>
 
 
-# 为什么狮子🦁的英文名是Rraion?
+# Rraion是什么意思?
+其实Rraion是狮子的英文名字啦
+
 首先悄咪咪告诉大家Rraion的标准读音，参考如下：
 
 <audio controls>
@@ -29,3 +31,5 @@
 当然如果你不会读颤音那么就读lion/ryan都OK啦。
 
 当然中文就叫我狮子或者小狮子就ok咯，如果可爱一点也可以读西几哈哈。🦁
+
+
