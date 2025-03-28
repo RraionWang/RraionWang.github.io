@@ -1,0 +1,29 @@
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 每行最多显示两个卡片 */
+    gap: 20px; /* 卡片之间的间距 */
+  }
+  
+  .card {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .card h3 {
+    font-size: 1.2em;
+    margin-bottom: 5px;
+  }
+  
+  .card p {
+    color: #777;
+  }
