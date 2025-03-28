@@ -44,6 +44,13 @@ markdown_extensions:
 
 extra_css:
   - stylesheets/card_container.css
+  - stylesheets/banner.css
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 
 nav:
   - Home: index.md
@@ -52,11 +59,14 @@ nav:
       - 入门小项目:
         - XIAO:
           - 人脸检测报警器: 开源小项目/入门项目/XIAO/人脸检测报警器.md
+          - 语音助手: 开源小项目/入门项目/XIAO/语音助手.md
   - 技术文章:
       - 零基础小白怎么快速上手智能硬件: 技术文章/零基础小白怎么快速上手智能硬件.md
       - Seeed产品快速上手:
         - CodeCraft平台: 技术文章/Seeed产品快速上手/CodeCraft平台.md
         - SenseCraft平台: 技术文章/Seeed产品快速上手/SenseCraft平台.md
-      - 项目2: 技术文章/测试2.md
+      - Qt上位机系列:
+        - 自己写串口绘图器: 技术文章/Qt上位机系列/自己写串口绘图器.md
+
   - 联系狮子: 联系/联系狮子.md
   - 简历内推: 简历内推/内推.md

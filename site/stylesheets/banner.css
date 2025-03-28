@@ -1,0 +1,18 @@
+.banner {
+    display: flex;
+    justify-content: center; /* 水平居中 */
+    align-items: center; /* 垂直居中 */
+    height: 80px; /* Banner 的高度 */
+    background-color: #4CAF50; /* 背景颜色（绿色） */
+    color: white; /* 文字颜色 */
+    font-size: 1.5em; /* 字体大小 */
+    font-weight: bold; /* 加粗字体 */
+    text-align: center; /* 文本居中 */
+    margin: 20px 0; /* 上下间距 */
+    border-radius: 5px; /* 圆角效果 */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 添加阴影效果 */
+  }
+  
+  .banner span {
+    padding: 0 20px; /* 文字左右内边距 */
+  }
