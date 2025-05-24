@@ -9,7 +9,7 @@
         data-repo="RraionWang/R2HUB75"
         data-repo-id="R_kgDOOvt7ww"
         data-mapping="number"
-        data-term="R2HUB75项目讨论"
+        data-term="1"
         data-reactions-enabled="1"
         data-emit-metadata="0"
         data-input-position="bottom"
