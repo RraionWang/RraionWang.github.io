@@ -62,15 +62,9 @@ nav:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
 
   - 技术文章:
-      - 零基础小白怎么快速上手智能硬件: 技术文章/零基础小白怎么快速上手智能硬件.md
-      - Seeed产品快速上手:
-        - CodeCraft平台: 技术文章/Seeed产品快速上手/CodeCraft平台.md
-        - SenseCraft平台: 技术文章/Seeed产品快速上手/SenseCraft平台.md
-      - Qt上位机系列:
-        - 自己写串口绘图器: 技术文章/Qt上位机系列/自己写串口绘图器.md
-      - PlatformIO教程:
-        - 快速安装PlatformIO: 技术文章/PlatformIO教程/快速安装PlatformIO.md
-        - 创建第一个ESP32S3项目: 技术文章/PlatformIO教程/创建第一个ESP32S3项目.md
+        - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
+        - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
+
   - 联系狮子: 联系/联系狮子.md
   - 简历内推: 简历内推/内推.md
   - 个人简介: 个人简介/个人简介.md
