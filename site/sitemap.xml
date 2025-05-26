@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://RraionWang.github.io/</loc>
+         <loc>https://RraionWang.github.io/tag/</loc>
          <lastmod>2025-05-26</lastmod>
     </url>
     <url>
-         <loc>https://RraionWang.github.io/tag/</loc>
+         <loc>https://RraionWang.github.io/index/</loc>
          <lastmod>2025-05-26</lastmod>
     </url>
     <url>
@@ -26,10 +26,6 @@
     </url>
     <url>
          <loc>https://RraionWang.github.io/%E7%AE%80%E5%8E%86%E5%86%85%E6%8E%A8/%E5%86%85%E6%8E%A8/</loc>
-         <lastmod>2025-05-26</lastmod>
-    </url>
-    <url>
-         <loc>https://RraionWang.github.io/%E8%81%94%E7%B3%BB/%E8%81%94%E7%B3%BB%E7%8B%AE%E5%AD%90/</loc>
          <lastmod>2025-05-26</lastmod>
     </url>
 </urlset>

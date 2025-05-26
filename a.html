@@ -1,0 +1,178 @@
+<style>
+  body {
+    font-family: sans-serif;
+    padding: 40px;
+    background-color: #f0f0f0;
+    margin: 0;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+
+  .social-card {
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-card:hover {
+    transform: translateY(-5px);
+  }
+
+  .card-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* 正方形 */
+    object-fit: cover;
+  }
+
+  .card-content {
+    padding: 15px;
+  }
+
+  .card-title {
+    margin: 0 0 8px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .card-desc {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+  }
+</style>
+
+
+
+
+<div class="card-grid">
+  <!-- 第一行 -->
+
+  <a href="https://www.instagram.com/" class="social-card" data-img="https://picsum.photos/id/1011/300/300">
+    <img src="https://picsum.photos/id/1011/300/300" alt="Instagram" class="card-image"
+      onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">Instagram</h3>
+      <p class="card-desc">分享生活点滴</p>
+    </div>
+  </a>
+
+  <a href="https://www.facebook.com/" class="social-card" data-img="https://picsum.photos/id/1025/300/300">
+    <img src="https://picsum.photos/id/1025/300/300" alt="Facebook" class="card-image"
+      onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">Facebook</h3>
+      <p class="card-desc">全球社交网络</p>
+    </div>
+  </a>
+
+  <a href="https://twitter.com/" class="social-card" data-img="https://picsum.photos/id/1074/300/300">
+    <img src="https://picsum.photos/id/1074/300/300" alt="Twitter/X" class="card-image"
+      onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">Twitter/X</h3>
+      <p class="card-desc">实时新闻与观点</p>
+    </div>
+  </a>
+
+  <!-- 第二行 -->
+
+  <a href="https://www.linkedin.com/" class="social-card" data-img="https://picsum.photos/id/1019/300/300">
+    <img src="https://picsum.photos/id/1019/300/300" alt="LinkedIn" class="card-image"
+      onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">LinkedIn</h3>
+      <p class="card-desc">职业发展平台</p>
+    </div>
+  </a>
+
+  <a href="https://www.youtube.com/" class="social-card" data-img="https://picsum.photos/id/1062/300/300">
+    <img src="https://picsum.photos/id/1062/300/300" alt="YouTube" class="card-image" onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">YouTube</h3>
+      <p class="card-desc">视频分享平台</p>
+    </div>
+  </a>
+
+  <a href="https://www.github.com/" class="social-card" data-img="https://picsum.photos/id/1056/300/300">
+    <img src="https://picsum.photos/id/1056/300/300" alt="GitHub" class="card-image" onload="extractMainColor(this)" />
+    <div class="card-content">
+      <h3 class="card-title">GitHub</h3>
+      <p class="card-desc">开源代码托管平台</p>
+    </div>
+  </a>
+</div>
+
+<script>
+  function extractMainColor(imgElement) {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = imgElement.naturalWidth || imgElement.width;
+    canvas.height = imgElement.naturalHeight || imgElement.height;
+
+    // 等待图片加载完成后再绘制
+    if (!canvas.width || !canvas.height) {
+      imgElement.addEventListener('load', () => {
+        canvas.width = imgElement.naturalWidth || imgElement.width;
+        canvas.height = imgElement.naturalHeight || imgElement.height;
+        ctx.drawImage(imgElement, 0, 0);
+        processImage();
+      });
+    } else {
+      ctx.drawImage(imgElement, 0, 0);
+      processImage();
+    }
+
+    function processImage() {
+      try {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const pixelData = imageData.data;
+
+        let r = 0, g = 0, b = 0, count = 0;
+
+        // 取样部分像素点（避免性能问题）
+        for (let i = 0; i < pixelData.length; i += 2000) {
+          r += pixelData[i];
+          g += pixelData[i + 1];
+          b += pixelData[i + 2];
+          count++;
+        }
+
+        if (count > 0) {
+          r = Math.floor(r / count);
+          g = Math.floor(g / count);
+          b = Math.floor(b / count);
+        }
+
+        const avgColor = `rgb(${r}, ${g}, ${b})`;
+        const parentCard = imgElement.closest('.social-card');
+
+        // 设置卡片背景为主题色
+        parentCard.style.backgroundColor = avgColor;
+        parentCard.style.color = getContrastColor(avgColor);
+      } catch (e) {
+        console.warn("无法获取图像数据", e);
+      }
+    }
+  }
+
+  // 根据背景色判断文字是否为白色或黑色
+  function getContrastColor(bgColor) {
+    const rgb = bgColor.match(/\d+/g);
+    const luminance = (0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]);
+    return luminance > 150 ? '#333' : '#fff';
+  }
+</script>

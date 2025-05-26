@@ -57,7 +57,7 @@ markdown_extensions:
 
 
 nav:
-  - Home: index.md
+  - Home: index/index.md
   - 标签: tag.md
   - 开源项目: 
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
@@ -66,6 +66,5 @@ nav:
         - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
         - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
 
-  - 联系狮子: 联系/联系狮子.md
   - 简历内推: 简历内推/内推.md
   - 个人简介: 个人简介/个人简介.md
