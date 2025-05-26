@@ -91,6 +91,7 @@ docker logs -f xiaozhi-esp32-server
 |OTA接口|http://192.168.19.1:8002/xiaozhi/ota/|
 |Websocket接口|ws://192.168.19.1:8000/xiaozhi/v1/|
 其他IP对应替换就可以
+![alt text](image-5.png)
 
 
 
