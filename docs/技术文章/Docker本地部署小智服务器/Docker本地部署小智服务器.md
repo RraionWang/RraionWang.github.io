@@ -115,3 +115,6 @@ docker logs -f xiaozhi-esp32-server
 请确保选择的是正确的IP，有时候本机部署会有一些虚拟IP，比如
 ![alt text](image-6.png)
 且请检查.config.yaml中的url是否配置为`http://xiaozhi-esp32-server-web:8002/xiaozhi`
+
+# 6. POST /config/server-base 请求失败
+使用` docker logs -f xiaozhi-esp32-server`指令查看日志出现`POST /config/server-base 请求失败`
