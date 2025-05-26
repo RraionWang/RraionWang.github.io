@@ -4,6 +4,7 @@ repo_url: https://github.com/RraionWang/RraionWang.github.io
 
 plugins:
   - tags
+  - social
 
 
 

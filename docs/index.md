@@ -1,4 +1,12 @@
+---
+social:
+  cards_layout_options:
+    background_color: blue # Change background color
+    background_image: null # Remove background image
+---
+
 # 主页
+## 找到🦁
 
 ## 项目列表
 |名称|地址|说明|
