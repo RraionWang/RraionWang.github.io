@@ -59,15 +59,14 @@ http://localhost:8002/xiaozhi/doc.html
 初次登录智控台需要进行账号注册
 
 8. 将智控台的密钥复制到.config.yaml，进入【参数字典】>【参数管理】，复制server.secret字段的值
-![alt text](image.png)
-![alt text](image-1.png)
-
-粘贴到.config.yaml文件的这里
-![alt text](image-2.png)
+  ![alt text](image.png)
+  ![alt text](image-1.png)
+  粘贴到.config.yaml文件的这里
+  ![alt text](image-2.png)
 
 9. 配置大语言模型
-![alt text](image-3.png)
-![alt text](image-4.png)
+  ![alt text](image-3.png)
+  ![alt text](image-4.png)
 
 10. 重启智控台
 使用如下指令：
