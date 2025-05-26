@@ -6,32 +6,6 @@ social:
 ---
 
 
-
-## 讨论区
-
-👋 Hello，欢迎大家讨论，我们的话题包括但不限于
-
-- 在使用技术中的任何疑问
-- 你觉得有意思可以上榜的项目
-- 希望和Seeed合作或者内推
-- 仓库的PR..
-
-
-<script src="https://giscus.app/client.js"
-        data-repo="RraionWang/RraionWang.github.io"
-        data-repo-id="R_kgDOMRt33A"
-        data-mapping="number"
-        data-term="1"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="light"
-        data-lang="zh-CN"
-        crossorigin="anonymous"
-        async>
-</script>
-
-
 ## 找到🦁
 
 
@@ -129,6 +103,32 @@ social:
   </a>
 
   </div>
+
+## 讨论区
+
+👋 Hello，欢迎大家讨论，我们的话题包括但不限于
+
+- 在使用技术中的任何疑问
+- 你觉得有意思可以上榜的项目
+- 希望和Seeed合作或者内推
+- 仓库的PR..
+
+
+<script src="https://giscus.app/client.js"
+        data-repo="RraionWang/RraionWang.github.io"
+        data-repo-id="R_kgDOMRt33A"
+        data-mapping="number"
+        data-term="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="bottom"
+        data-theme="light"
+        data-lang="zh-CN"
+        crossorigin="anonymous"
+        async>
+</script>
+
+
 
 
 ## 项目列表
