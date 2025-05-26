@@ -114,3 +114,4 @@ docker logs -f xiaozhi-esp32-server
 ![alt text](image-7.png)
 请确保选择的是正确的IP，有时候本机部署会有一些虚拟IP，比如
 ![alt text](image-6.png)
+且请检查.config.yaml中的url是否配置为`http://xiaozhi-esp32-server-web:8002/xiaozhi`
