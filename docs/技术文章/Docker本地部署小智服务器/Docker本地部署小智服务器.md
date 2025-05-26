@@ -83,6 +83,15 @@ docker logs -f xiaozhi-esp32-server
 ```
 就表示server启动成功
 
+11. 配置OTA和websocket地址
+打开cmd使用`ipconfig`(win)或者`ifconfig`(linux)查看到自己的ip，假设ip为192.168.19.1，那么你的OTA接口和websocket接口就是
+
+|接口|地址|
+|-|-|
+|OTA接口|http://192.168.19.1:8002/xiaozhi/ota/|
+|Websocket接口|ws://192.168.19.1:8000/xiaozhi/v1/|
+其他IP对应替换就可以
+
 
 
 ## FAQ
@@ -92,3 +101,9 @@ docker logs -f xiaozhi-esp32-server
 
 ### 2. docker无法拉取镜像
 使用docker国内镜像仓库或者魔法
+
+## 3. windows进行docker部署产生错误
+如果是Docker Desktop请先打开，然后进行部署
+
+## 4. 服务器外部无法访问8002端口
+请在服务器的防火墙打开对应端口

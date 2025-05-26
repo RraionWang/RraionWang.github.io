@@ -611,6 +611,24 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-windowsdocker" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. windows进行docker部署产生错误
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-8002" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 服务器外部无法访问8002端口
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -816,12 +834,42 @@ docker<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </s
 </code></pre></div>
 就表示server启动成功</p>
 </li>
+<li>
+<p>配置OTA和websocket地址
+打开cmd使用<code>ipconfig</code>(win)或者<code>ifconfig</code>(linux)查看到自己的ip，假设ip为192.168.19.1，那么你的OTA接口和websocket接口就是</p>
+</li>
 </ol>
+<table>
+<thead>
+<tr>
+<th>接口</th>
+<th>地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OTA接口</td>
+<td>http://192.168.19.1:8002/xiaozhi/ota/</td>
+</tr>
+<tr>
+<td>Websocket接口</td>
+<td>ws://192.168.19.1:8000/xiaozhi/v1/</td>
+</tr>
+<tr>
+<td>其他IP对应替换就可以</td>
+<td></td>
+</tr>
+</tbody>
+</table>
 <h2 id="faq">FAQ</h2>
 <h3 id="1-docker">1. 使用docker启动小智服务器之后服务器宕机卡死</h3>
 <p>检查服务器内存是否<font color=red>&gt;=8G</font>，如果不满足条件请加装内存</p>
 <h3 id="2-docker">2. docker无法拉取镜像</h3>
 <p>使用docker国内镜像仓库或者魔法</p>
+<h2 id="3-windowsdocker">3. windows进行docker部署产生错误</h2>
+<p>如果是Docker Desktop请先打开，然后进行部署</p>
+<h2 id="4-8002">4. 服务器外部无法访问8002端口</h2>
+<p>请在服务器的防火墙打开对应端口</p>
 
 
 
