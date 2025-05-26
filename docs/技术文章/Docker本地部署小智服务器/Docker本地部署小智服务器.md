@@ -63,7 +63,7 @@ http://localhost:8002/xiaozhi/doc.html
   ![alt text](image-1.png)
   粘贴到.config.yaml文件的这里
   ![alt text](image-2.png)
-
+ 
 9. 配置大语言模型
   ![alt text](image-3.png)
   ![alt text](image-4.png)
@@ -109,3 +109,8 @@ docker logs -f xiaozhi-esp32-server
 
 ## 4. 服务器外部无法访问8002端口
 请在服务器的防火墙打开对应端口
+
+## 5. 小智一直显示检查新版本失败
+![alt text](image-7.png)
+请确保选择的是正确的IP，有时候本机部署会有一些虚拟IP，比如
+![alt text](image-6.png)
