@@ -66,6 +66,9 @@ nav:
         - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
         - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
         - XIAO最小Platformio工程: 技术文章/XIAO最小Platformio工程/XIAO最小Platformio工程.md
+        - DXF合集: 
+          - Seeed Grove传感器 :
+            - 超声波距离传感器 : 技术文章/DXF合集/XIAO_Grove_Sensor/ultrasonic_distance_sensor.md
 
   - 简历内推: 简历内推/内推.md
   - 个人简介: 个人简介/个人简介.md
