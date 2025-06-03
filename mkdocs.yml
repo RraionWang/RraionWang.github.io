@@ -63,6 +63,9 @@ nav:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
 
   - 技术文章:
+        - XIAO:
+          - SenseCraft串口结构: 技术文章/XIAO_ESP32S3合集/XIAO_ESP323_SenseCraft_format/XIAO_ESP323_SenseCraft_format.md 
+
         - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
         - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
         - XIAO最小Platformio工程: 技术文章/XIAO最小Platformio工程/XIAO最小Platformio工程.md
