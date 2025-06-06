@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Zdog Bookshelf</title>
+  <style>
+    canvas {
+      background: #f5f5f5;
+      display: block;
+      margin: 40px auto;
+      border: 1px solid #ccc;
+    }
+  </style>
+</head>
+
+<body>
+
+  <canvas id="bookshelfCanvas" width="600" height="500"></canvas>
+
+  <!-- 引入 Zdog -->
+  <script src="https://unpkg.com/zdog@1/dist/zdog.dist.min.js"></script>
+
+  <script>
+    const TAU = Zdog.TAU;
+
+    // 创建场景
+    const illo = new Zdog.Illustration({
+      element: '#bookshelfCanvas',
+      dragRotate: true,
+      zoom: 2,
+    });
+
+    // 书籍尺寸
+    const bookWidth = 20;
+    const bookHeight = 20;
+    const bookDepth = 10;
+
+    // 书架参数
+    const shelves = 4;
+    const booksPerShelf = 6;
+    const shelfSpacing = 20;
+    const shelfWidth = (bookWidth + 5) * booksPerShelf - 5;
+
+    // 立柱宽度
+    const postWidth = 10;
+
+    // 随机颜色生成器
+    function getRandomColor() {
+      const colors = ['#FFB6C1', '#98FB98', '#87CEEB', '#FFD700', '#FFA07A'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+
+    // 创建书架框架
+    function drawBookshelfFrame() {
+      // 左右立柱
+      for (let i = 0; i < 2; i++) {
+        new Zdog.Box({
+          addTo: illo,
+          width: postWidth,
+          height: shelfSpacing * shelves,
+          depth: postWidth,
+          color: '#8B4513',
+          stroke: false,
+          translate: {
+            x: i === 0 ? -shelfWidth / 2 : shelfWidth / 2,
+            y: 0,
+            z: 0,
+          },
+        });
+      }
+
+      // 层板
+      for (let i = 0; i < shelves; i++) {
+        new Zdog.Box({
+          addTo: illo,
+          width: shelfWidth,
+          height: 5,
+          depth: postWidth,
+          color: '#A0522D',
+          stroke: false,
+          translate: {
+            y: -shelfSpacing * shelves / 2 + i * shelfSpacing + 20,
+            z: 0,
+          },
+        });
+      }
+    }
+
+    // 创建书籍
+    function drawBooks() {
+      for (let s = 0; s < shelves; s++) {
+        for (let b = 0; b < booksPerShelf; b++) {
+          const x = -shelfWidth / 2 + b * (bookWidth + 5) + bookWidth / 2;
+          const y = -shelfSpacing * shelves / 2 + s * shelfSpacing + 20 - bookHeight / 2;
+
+          const book = new Zdog.Group({
+            translate: { x, y, z: 0 },
+            addTo: illo,
+          });
+
+          new Zdog.Box({
+            addTo: book,
+            width: bookWidth,
+            height: bookHeight,
+            depth: bookDepth,
+            color: getRandomColor(),
+            stroke: false,
+            fill: true,
+            frontFace: true,
+            backface: true,
+            leftFace: true,
+            rightFace: true,
+            topFace: true,
+            bottomFace: true,
+          });
+        }
+      }
+    }
+
+    // 绘制整个书架
+    drawBookshelfFrame();
+    drawBooks();
+
+    // 动画循环
+    function animate() {
+      illo.updateRenderGraph();
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+
+</body>
+
+</html>
