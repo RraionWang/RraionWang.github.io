@@ -1,0 +1,1395 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://RraionWang.github.io/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/raspberrypi/pi4_openwrt/pi4_openwrt/">
+      
+      
+        <link rel="prev" href="../../../../%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/R2HUB75/R2HUB75/">
+      
+      
+        <link rel="next" href="../../../Zdog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/design_a_shelf/">
+      
+      
+      <link rel="icon" href="../../../../images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>使用树莓派+OpenWrt实现魔法软路由 - 狮子Rraion的网站</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto Mono";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../stylesheets/card_container.css">
+    
+      <link rel="stylesheet" href="../../../../stylesheets/banner.css">
+    
+    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+      
+        <meta  property="og:type"  content="website" >
+      
+        <meta  property="og:title"  content="使用树莓派+OpenWrt实现魔法软路由 - 狮子Rraion的网站" >
+      
+        <meta  property="og:description"  content="None" >
+      
+        <meta  property="og:image"  content="https://RraionWang.github.io/assets/images/social/技术文章/raspberrypi/pi4_openwrt/pi4_openwrt.png" >
+      
+        <meta  property="og:image:type"  content="image/png" >
+      
+        <meta  property="og:image:width"  content="1200" >
+      
+        <meta  property="og:image:height"  content="630" >
+      
+        <meta  property="og:url"  content="https://RraionWang.github.io/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/raspberrypi/pi4_openwrt/pi4_openwrt/" >
+      
+        <meta  name="twitter:card"  content="summary_large_image" >
+      
+        <meta  name="twitter:title"  content="使用树莓派+OpenWrt实现魔法软路由 - 狮子Rraion的网站" >
+      
+        <meta  name="twitter:description"  content="None" >
+      
+        <meta  name="twitter:image"  content="https://RraionWang.github.io/assets/images/social/技术文章/raspberrypi/pi4_openwrt/pi4_openwrt.png" >
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4openwrt" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="狮子Rraion的网站" class="md-header__button md-logo" aria-label="狮子Rraion的网站" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            狮子Rraion的网站
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              使用树莓派+OpenWrt实现魔法软路由
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/RraionWang/RraionWang.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../tag/" class="md-tabs__link">
+        
+  
+    
+  
+  标签
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/R2HUB75/R2HUB75/" class="md-tabs__link">
+          
+  
+  开源项目
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  技术文章
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../%E7%AE%80%E5%8E%86%E5%86%85%E6%8E%A8/%E5%86%85%E6%8E%A8/" class="md-tabs__link">
+        
+  
+    
+  
+  简历内推
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/" class="md-tabs__link">
+        
+  
+    
+  
+  个人简介
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/" class="md-tabs__link">
+        
+  
+    
+  
+  友情链接
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="狮子Rraion的网站" class="md-nav__button md-logo" aria-label="狮子Rraion的网站" data-md-component="logo">
+      
+  <img src="../../../../assets/logo.png" alt="logo">
+
+    </a>
+    狮子Rraion的网站
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/RraionWang/RraionWang.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../tag/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    标签
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    开源项目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            开源项目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/R2HUB75/R2HUB75/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    R2HUB75
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    技术文章
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            技术文章
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    树莓派
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            树莓派
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    使用树莓派+OpenWrt实现魔法软路由
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    使用树莓派+OpenWrt实现魔法软路由
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      前言
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      步骤
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="步骤">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-openwrt" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. 下载OpenWrt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. 进入后台
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. 树莓派配置网络
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-scp" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. 配置scp让电脑和树莓派可以互传文件
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. 更换主题以及语言
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-openclash" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. 安装openclash
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7openclash" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.使用配置openclash服务
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Zdog
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            Zdog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Zdog%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/design_a_shelf/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用zdog设计一个书架
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    XIAO
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            XIAO
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XIAO_ESP32S3%E5%90%88%E9%9B%86/XIAO_ESP323_SenseCraft_format/XIAO_ESP323_SenseCraft_format/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SenseCraft串口结构
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Docker%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%B0%8F%E6%99%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/Docker%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2%E5%B0%8F%E6%99%BA%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker本地部署小智服务器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Docker%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2dify/Docker%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2dify/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker本地部署dify
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../XIAO%E6%9C%80%E5%B0%8FPlatformio%E5%B7%A5%E7%A8%8B/XIAO%E6%9C%80%E5%B0%8FPlatformio%E5%B7%A5%E7%A8%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    XIAO最小Platformio工程
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DXF合集
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            DXF合集
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7_1" id="__nav_4_7_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Seeed Grove传感器
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_7_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7_1">
+            <span class="md-nav__icon md-icon"></span>
+            Seeed Grove传感器
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../DXF%E5%90%88%E9%9B%86/XIAO_Grove_Sensor/ultrasonic_distance_sensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    超声波距离传感器
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_8" id="__nav_4_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    FreeCAD
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_8">
+            <span class="md-nav__icon md-icon"></span>
+            FreeCAD
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../FreeCAD/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    使用FreeCAD设计dxf文件
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E7%AE%80%E5%8E%86%E5%86%85%E6%8E%A8/%E5%86%85%E6%8E%A8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    简历内推
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/%E4%B8%AA%E4%BA%BA%E7%AE%80%E4%BB%8B/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    个人简介
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/%E5%8F%8B%E6%83%85%E9%93%BE%E6%8E%A5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    友情链接
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="4openwrt">树莓派4安装OpenWRT开启魔法</h1>
+<h2 id="_1">前言</h2>
+<p>之前是安装了LEDE，结果发现在OpenClash页面出现无法上传openclash的yaml配置文件，后来就放弃了，如果有朋友可以做到请告诉我，或者提交PR到本文章</p>
+<h2 id="_2">步骤</h2>
+<h3 id="1-openwrt">1. 下载OpenWrt</h3>
+<p>首先去<a href="https://openwrt.org/toh/raspberry_pi_foundation/raspberry_pi">OpenWrt的树莓派页面</a>进行镜像文件的烧录，我使用的是Pi4B，所以下载下图这个镜像文件：
+<img alt="alt text" src="../image.png" />
+使用树莓派的烧录工具就可以，如果直接使用rufus的工具，请先对卡片进行格式化
+<img alt="alt text" src="../image-1.png" /></p>
+<h3 id="2">2. 进入后台</h3>
+<p>openWrt的默认登录地址是192.168.1.1，如果在没有外接显示器的情况下，可以使用网线将树莓派和电脑连接，然后将电脑的ip设置到同一网段，比如我设置的就是192.168.1.12
+<img alt="alt text" src="../image-2.png" /></p>
+<p>这样使用电脑浏览器输入192.168.1.1就可以登录后台了，如下，默认密码是openwrt或者为空</p>
+<p><img alt="alt text" src="../image-3.png" /></p>
+<h3 id="3">3. 树莓派配置网络</h3>
+<p>树莓派默认不是DHCP，我们将其配置为DHCP，这样我们就可以使用树莓派连接路由器进行上网，不一定需要在192.168.1.x网段，使用以下指令</p>
+<p><div class="highlight"><pre><span></span><code>uci<span class="w"> </span><span class="nb">set</span><span class="w"> </span>network.lan.proto<span class="o">=</span>dhcp
+uci<span class="w"> </span>commit
+/etc/init.d/network<span class="w"> </span>restart
+</code></pre></div>
+请记得将电脑的以太网配置重新修改为DHCP，这样我们就可以在路由器后台看到树莓派的IP啦，如下
+<img alt="alt text" src="../image-4.png" /></p>
+<h3 id="4-scp">4. 配置scp让电脑和树莓派可以互传文件</h3>
+<p>使用以下指令</p>
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>update
+opkg<span class="w"> </span>install<span class="w"> </span>openssh-sftp-server
+</code></pre></div>
+<h3 id="5">5. 更换主题以及语言</h3>
+<p>我们首先确认下树莓派能不能上网，可以使用<code>ping www.baidu.com</code>可以测试，成功结果类似下面：
+<img alt="alt text" src="../image-5.png" />
+默认的OpenWrt的界面不是很好看并且是英文的，我们设置中文并且配置一个更友好的主题。首先在电脑终端使用
+<div class="highlight"><pre><span></span><code>ssh<span class="w"> </span>root@192.168.1.1<span class="w"> </span><span class="c1">#根据你自己的树莓派更换IP</span>
+</code></pre></div>
+进行连接，使用以下指令设置中文
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>update
+opkg<span class="w"> </span>install<span class="w"> </span>luci-i18n-base-zh-cn
+/etc/init.d/uhttpd<span class="w"> </span>restart
+</code></pre></div>
+<img alt="alt text" src="../image-6.png" /></p>
+<p>这样我们的OpenWrt就会变成中文页面了</p>
+<p><img alt="alt text" src="../image-7.png" /></p>
+<p>接下来我们来配置主题，本文以为<code>argon</code>为例，输入</p>
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>install<span class="w"> </span>luci-theme-argon
+</code></pre></div>
+<p>如果没有主题，可以在电脑下载，然后通过scp传输，我这里提供一个argon主题<a href="../luci-theme-argon_2.3.2-r20250207_all.ipk">下载</a>,或者也可以去<a href="https://github.com/jerrykuku/luci-theme-argon/releases/">这里</a>进行下载。</p>
+<p>使用scp传输：</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>/path/to/luci-theme-argon_2.3.2-r20250207_all.ipk<span class="w"> </span>root@192.168.2.104:/tmp<span class="w"> </span><span class="c1"># 替换自己的ipk的真实路径</span>
+</code></pre></div>
+<p>然后使用opkg进行安装</p>
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>install<span class="w"> </span>/path/to/luci-theme-argon_2.3.2-r20250207_all.ipk<span class="w"> </span>
+</code></pre></div>
+<h3 id="6-openclash">6. 安装openclash</h3>
+<p>如果在没有源的情况下，也可以手动安装openclash，我在这里提供一个下载连接：<a href="../luci-app-openclash_0.46.086_all.ipk">luci-app-openclash_0.46.086_all.ipk</a>，大家也可以去仓库去进行最新下载。</p>
+<p>下载之后在电脑的终端使用scp进行传输</p>
+<div class="highlight"><pre><span></span><code>scp<span class="w"> </span>/path/to/luci-app-openclash_0.46.086_all.ipk<span class="w"> </span>root@192.168.2.104:/tmp<span class="w"> </span><span class="c1"># 替换自己的ipk的真实路径</span>
+</code></pre></div>
+<p>如果出现dnsmasq-full 和系统默认 dnsmasq 包冲突问题如下
+<div class="highlight"><pre><span></span><code>Package<span class="w"> </span>dnsmasq-full<span class="w"> </span>wants<span class="w"> </span>to<span class="w"> </span>install<span class="w"> </span>file<span class="w"> </span>...<span class="w"> </span>already<span class="w"> </span>provided<span class="w"> </span>by<span class="w"> </span>package<span class="w"> </span>dnsmasq
+</code></pre></div></p>
+<p>请先卸载 dnsmasq，再装 dnsmasq-ful，执行以下指令：</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 1. 卸载默认 dnsmasq（系统网络短暂中断，请确认本地连接好）</span>
+opkg<span class="w"> </span>remove<span class="w"> </span>dnsmasq
+
+<span class="c1"># 2. 安装 dnsmasq-full（OpenClash 所需）</span>
+opkg<span class="w"> </span>install<span class="w"> </span>dnsmasq-full
+
+<span class="c1"># 3. 再次安装 OpenClash</span>
+opkg<span class="w"> </span>install<span class="w"> </span>./luci-app-openclash_0.46.086_all.ipk
+</code></pre></div>
+<p>在ssh中使用
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>install<span class="w"> </span>/path/to/luci-app-openclash_0.46.086_all.ipk
+/etc/init.d/uhttpd<span class="w"> </span>restart
+</code></pre></div>
+进行安装和重启，然后就可以看到openclash了</p>
+<p>如果安装之后出现</p>
+<p><img alt="alt text" src="../image-8.png" /></p>
+<p>可以使用如下指令进行缺失的模块安装</p>
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>update
+opkg<span class="w"> </span>install<span class="w"> </span>luci-compat<span class="w"> </span>luci-mod-admin-full
+</code></pre></div>
+<p>如果有足够空间，还可以安装如下模块</p>
+<div class="highlight"><pre><span></span><code>opkg<span class="w"> </span>install<span class="w"> </span>luci<span class="w"> </span>luci-base<span class="w"> </span>luci-mod-network<span class="w"> </span>luci-mod-status
+</code></pre></div>
+<p>然后使用
+<div class="highlight"><pre><span></span><code>/etc/init.d/uhttpd<span class="w"> </span>restart
+</code></pre></div>
+进行web服务重启，如果没有出现openssh，请直接重启树莓派，重启之后就会看到openclash了
+<img alt="alt text" src="../image-9.png" /></p>
+<h3 id="7openclash">7.使用配置openclash服务</h3>
+<p>点击openclash服务，首次会出现安装内核提示如下
+<img alt="alt text" src="../image-10.png" />
+请选择cdn进行安装，如果安装失败，也可以考虑老方法，也就是使用电脑下载对应的文件，通过scp进行传输。树莓派4使用armv8架构，点击<a href="../clash_meta">clash_meta</a>进行下载，或者在<a href="https://github.com/MetaCubeX/mihomo/releases/tag/v1.19.10">github</a>进行下载。</p>
+<p>然后请将文件传输到服务器的<code>/etc/openclash/core</code>，然后执行如下操作（本网站文件已经更名）
+<div class="highlight"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>/etc/openclash/core
+gzip<span class="w"> </span>-d<span class="w"> </span>clash.meta-linux-arm64-2024.04.21.gz
+mv<span class="w"> </span>clash.meta-linux-arm64-2024.04.21<span class="w"> </span>clash_meta<span class="w"> </span>
+chmod<span class="w"> </span>+x<span class="w"> </span>clash_meta
+ln<span class="w"> </span>-sf<span class="w"> </span>clash_meta<span class="w"> </span>clash
+</code></pre></div></p>
+<p>接着就可以上传yaml配置文件了
+<img alt="alt text" src="../image-11.png" /></p>
+<p>接着i其拿给点击启动openclash进行配置
+<img alt="alt text" src="../image-12.png" /></p>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/%E5%B2%A9%E6%9D%BE-%E6%B1%AA-7a469b357/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/RraionWang" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0" target="_blank" rel="noopener" title="space.bilibili.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@rraion4theworld" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M549.655 124.083c-6.281-23.65-24.787-42.276-48.284-48.597C458.781 64 288 64 288 64S117.22 64 74.629 75.486c-23.497 6.322-42.003 24.947-48.284 48.597-11.412 42.867-11.412 132.305-11.412 132.305s0 89.438 11.412 132.305c6.281 23.65 24.787 41.5 48.284 47.821C117.22 448 288 448 288 448s170.78 0 213.371-11.486c23.497-6.321 42.003-24.171 48.284-47.821 11.412-42.867 11.412-132.305 11.412-132.305s0-89.438-11.412-132.305m-317.51 213.508V175.185l142.739 81.205z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../../..", "features": ["navigation.tabs", "navigation.path", "toc.integrate"], "search": "../../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>
