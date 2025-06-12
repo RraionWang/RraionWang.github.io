@@ -63,6 +63,8 @@ nav:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
 
   - 技术文章:
+        - 结构设计:
+          - XIAO结构设计: 技术文章/结构设计/xiao/xiao_esp32s3.md
         - 树莓派:
           - 使用树莓派+OpenWrt实现魔法软路由: 技术文章/raspberrypi/pi4_openwrt/pi4_openwrt.md
         - Zdog:
