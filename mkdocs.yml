@@ -6,12 +6,13 @@ plugins:
   - tags
   - social
 
-
-
 theme:
   palette:
     primary: black
-  name: 'material'
+  name: 'material'  
+  
+
+
   features:
     - tags
   logo: assets/logo.png
@@ -63,6 +64,8 @@ nav:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
 
   - 技术文章:
+        - ESP-IDF:
+          - 环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md
         - 结构设计:
           - XIAO结构设计: 技术文章/结构设计/xiao/xiao_esp32s3.md
         - 树莓派:
