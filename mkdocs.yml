@@ -4,86 +4,76 @@ repo_url: https://github.com/RraionWang/RraionWang.github.io
 
 plugins:
   - tags
-  - social
+  # - social  # 暂时禁用 social 插件，避免因字体下载失败导致构建失败
 
 theme:
+  name: 'material'
   palette:
     primary: black
-  name: 'material'  
-  
-
-
-  features:
-    - tags
   logo: assets/logo.png
   favicon: images/favicon.png
   features:
     - navigation.tabs
     - navigation.path
     - toc.integrate
+    - tags
   font:
-    text: Roboto Mono
+    text: Roboto Mono  # 如果 Google Fonts 无法下载，你可以去掉这一行或换成本地字体文件
     language: zh
-
 
 extra:
   social:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/%E5%B2%A9%E6%9D%BE-%E6%B1%AA-7a469b357/
-    - icon: fontawesome/brands/github  # 图标类型
-      link: https://github.com/RraionWang # 链接地址
-    - icon: fontawesome/brands/bilibili  # 图标类型
-      link: https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0  # 链接地址
-    - icon: fontawesome/brands/youtube  # 图标类型
-      link: https://www.youtube.com/@rraion4theworld  # 链接地址
-
-
+    - icon: fontawesome/brands/github
+      link: https://github.com/RraionWang
+    - icon: fontawesome/brands/bilibili
+      link: https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@rraion4theworld
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
-
 extra_css:
   - stylesheets/card_container.css
   - stylesheets/banner.css
 
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-
-
 nav:
   - Home: index.md
   - 标签: tag.md
-  - 开源项目: 
+  - 开源项目:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
-
   - 技术文章:
-        - ESP-IDF:
-          - 环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md
-        - 结构设计:
+      - ESP-IDF:
+          - 1.环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md
+          - 2.基础知识: 技术文章/ESP-IDF/esp_idf_2_basic/esp_idf_2_basic.md
+          - 3.第一个工程: 技术文章/ESP-IDF/esp_idf_3_first_proj/esp_idf_3_first_proj.md
+          - 4.同步，互斥和队列: 技术文章/ESP-IDF/esp_idf_4_sync_mutex_queue/esp_idf_4_sync_mutex_queue.md
+          - 5.信号: 技术文章/ESP-IDF/esp_idf_5_semaphore/esp_idf_5_semaphore.md 
+
+      - 结构设计:
           - XIAO结构设计: 技术文章/结构设计/xiao/xiao_esp32s3.md
-        - 树莓派:
+      - 树莓派:
           - 使用树莓派+OpenWrt实现魔法软路由: 技术文章/raspberrypi/pi4_openwrt/pi4_openwrt.md
-        - Zdog:
+      - Zdog:
           - 使用zdog设计一个书架: 技术文章/Zdog学习笔记/design_a_shelf.md
-        - XIAO:
-          - SenseCraft串口结构: 技术文章/XIAO_ESP32S3合集/XIAO_ESP323_SenseCraft_format/XIAO_ESP323_SenseCraft_format.md 
-
-        - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
-        - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
-        - XIAO最小Platformio工程: 技术文章/XIAO最小Platformio工程/XIAO最小Platformio工程.md
-        - DXF合集: 
-          - Seeed Grove传感器 :
-            - 超声波距离传感器 : 技术文章/DXF合集/XIAO_Grove_Sensor/ultrasonic_distance_sensor.md
-        - FreeCAD:
+      - XIAO:
+          - SenseCraft串口结构: 技术文章/XIAO_ESP32S3合集/XIAO_ESP323_SenseCraft_format/XIAO_ESP323_SenseCraft_format.md
+      - Docker本地部署小智服务器: 技术文章/Docker本地部署小智服务器/Docker本地部署小智服务器.md
+      - Docker本地部署dify: 技术文章/Docker本地部署dify/Docker本地部署dify.md
+      - XIAO最小Platformio工程: 技术文章/XIAO最小Platformio工程/XIAO最小Platformio工程.md
+      - DXF合集:
+          - Seeed Grove传感器:
+              - 超声波距离传感器: 技术文章/DXF合集/XIAO_Grove_Sensor/ultrasonic_distance_sensor.md
+      - FreeCAD:
           - 使用FreeCAD设计dxf文件: 技术文章/FreeCAD/使用FreeCAD设计dxf文件/使用FreeCAD设计dxf文件.md
-
   - 简历内推: 简历内推/内推.md
   - 个人简介: 个人简介/个人简介.md
   - 友情链接: 友情链接/友情链接.md
