@@ -13,6 +13,28 @@
 ## 创建一个工程
 `idf.py create-project prj_name`
 
+## 第一个例程代码
+```c
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include <esp_log.h>
+
+void taskA(void *param)
+{
+  while (1)
+  {
+    ESP_LOGI("main", "hello rraion");
+    vTaskDelay(pdMS_TO_TICKS(500));
+  }
+}
+
+void app_main(void)
+{
+  xTaskCreatePinnedToCore(taskA, "helloworld", 2048, NULL, 3, NULL, 1);
+}
+```
+
 ## FAQ
 1. 移动了esp-idf工具链检测异常
 - 请使用vscode插件进行工具链路径的重新配置
