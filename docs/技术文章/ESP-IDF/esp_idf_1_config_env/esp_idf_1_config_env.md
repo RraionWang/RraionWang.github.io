@@ -53,6 +53,16 @@ sudo usermod -aG dialout rraion
 
 ```
 
+## 5. 部分menuconfig配置
+1. 工作主频（默认160MHz 最高可以到240MHz）
+`Component config > ESP System Setting >CPU Frequency `
+2. Flash大小（默认是2M，可以配置为实际的）
+`Serial flasher config > Flash size`
+3. PSRAM
+![alt text](image-1.png)
+`Component config >`
+如果没有PSRAM这个选项请参考这篇文章 https://blog.csdn.net/Bin_Watson/article/details/147692351
+
 ## 备注
 1. 需要考虑权限的问题，一开始我将两个文件夹放到了/usr/share目录下，发现使用idf.py没有权限，使用sudo虚拟环境又不一样，解决方法是放到了/home/rraion/目录下，然后使用重新刷新了下编译链就好了。
 
