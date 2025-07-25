@@ -51,14 +51,16 @@ nav:
   - 开源项目:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
   - 技术文章:
+      - U8g2:
+          - 1. 基础知识: 技术文章/U8g2/1_basic/1_basic.md
       - ESP-IDF:
           - 1.环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md
           - 2.基础知识: 技术文章/ESP-IDF/esp_idf_2_basic/esp_idf_2_basic.md
           - 3.第一个工程: 技术文章/ESP-IDF/esp_idf_3_first_proj/esp_idf_3_first_proj.md
           - 4.同步，互斥和队列: 技术文章/ESP-IDF/esp_idf_4_sync_mutex_queue/esp_idf_4_sync_mutex_queue.md
           - 5.信号: 技术文章/ESP-IDF/esp_idf_5_semaphore/esp_idf_5_semaphore.md 
-          - 6.事件和其他: 技术文章\ESP-IDF\esp_idf_6_event_and_other\esp_idf_6_event_and_other.md
-          - 7.GPIO: 技术文章\ESP-IDF\esp_idf_7_gpio\esp_idf_7_gpio.md
+          - 6.事件和其他: 技术文章/ESP-IDF/esp_idf_6_event_and_other/esp_idf_6_event_and_other.md
+          - 7.GPIO: 技术文章/ESP-IDF/esp_idf_7_gpio/esp_idf_7_gpio.md
 
       - 结构设计:
           - XIAO结构设计: 技术文章/结构设计/xiao/xiao_esp32s3.md
