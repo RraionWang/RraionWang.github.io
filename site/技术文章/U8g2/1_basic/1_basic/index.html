@@ -1489,20 +1489,29 @@
 如果没有了，退出循环，完成整个屏幕的绘制。</p>
 <p>⑤ delay(1000);
 延时 1 秒，避免屏幕刷新过快。</p>
-<p>📝 总结
-|函数 |作用|
-|-|-|
-|u8g2.firstPage()|  初始化分页绘图，开始绘制第一页|
-|u8g2.nextPage()|   切换到下一页，并返回是否还有下一页|
-|do-while 循环    |保证所有页都被绘制|</p>
-<p>🧪 小实验：去掉 do-while 会怎样？
-如果你写成：</p>
-<p>cpp
-<div class="highlight"><pre><span></span><code><span class="n">u8g2</span><span class="p">.</span><span class="n">firstPage</span><span class="p">();</span>
-<span class="n">u8g2</span><span class="p">.</span><span class="n">setFont</span><span class="p">(...);</span>
-<span class="n">u8g2</span><span class="p">.</span><span class="n">drawStr</span><span class="p">(...);</span>
-</code></pre></div></p>
-<p>那么你只会绘制屏幕的第一页（前 8 行），其余部分不会被更新，屏幕显示不完整。</p>
+<p>📝 总结</p>
+<table>
+<thead>
+<tr>
+<th>函数</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>u8g2.firstPage()</td>
+<td>初始化分页绘图，开始绘制第一页</td>
+</tr>
+<tr>
+<td>u8g2.nextPage()</td>
+<td>切换到下一页，并返回是否还有下一页</td>
+</tr>
+<tr>
+<td>do-while 循环</td>
+<td>保证所有页都被绘制</td>
+</tr>
+</tbody>
+</table>
 
 
 
