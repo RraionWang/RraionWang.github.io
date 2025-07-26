@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>U8g2 MUI 菜单生成器</title>
+  <style>
+    body { font-family: monospace; display: flex; gap: 20px; padding: 20px; }
+    textarea { width: 350px; height: 360px; }
+    #oled { background: black; color: white; width: 220px; height: 140px; padding: 10px; margin-top:10px; }
+    #output { white-space: pre; background: #f0f0f0; padding: 10px; width: 540px; height: 360px; overflow: auto; }
+    .menu-line { margin: 2px 0; }
+    .selected { background: white; color: black; }
+  </style>
+</head>
+<body>
+
+  <div>
+    <h3>菜单 JSON 配置</h3>
+    <textarea id="jsonInput">{
+  "initIndex": 3,
+  "items": [
+    { "id": "ST", "label": "Start" },
+    { "id": "SE", "label": "Settings" },
+    { "id": "SA", "label": "1 choice" },
+    { "id": "SB", "label": "2 choice" },
+    { "id": "SC", "label": "3 jjjj" }
+  ]
+}
+    </textarea>
+    <button onclick="generate()">生成 C++ 菜单代码</button>
+  </div>
+
+  <div>
+    <h3>OLED 菜单预览</h3>
+    <div id="oled"></div>
+  </div>
+
+  <div>
+    <h3>生成 C++ 代码</h3>
+    <div id="output"></div>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>

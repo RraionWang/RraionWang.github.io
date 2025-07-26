@@ -55,6 +55,9 @@ nav:
 
           - 1. 基础知识: 技术文章/U8g2/1_basic/1_basic.md
           - 2. 基础控件API: 技术文章/U8g2/2_graph/2_graph.md
+      - mui:
+          - 1. 基础: 技术文章/u8g2_mui/1_index/1_index.md
+          - 2. 设计一个列表: 技术文章/u8g2_mui/2_design_a_list/2_design_a_list.md
 
       - ESP-IDF:
           - 1.环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md
