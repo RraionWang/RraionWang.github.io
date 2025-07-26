@@ -58,6 +58,7 @@ nav:
       - mui:
           - 1. 基础: 技术文章/u8g2_mui/1_index/1_index.md
           - 2. 设计一个列表: 技术文章/u8g2_mui/2_design_a_list/2_design_a_list.md
+          - 3. 设计一个上下选列表: 技术文章/u8g2_mui/3_design_a_up_and_down_list/3_design_a_up_and_down_list.md
 
       - ESP-IDF:
           - 1.环境搭建: 技术文章/ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env.md

@@ -630,6 +630,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    1. 基础
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -640,6 +652,34 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      测试代码
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -658,6 +698,28 @@
   
   <span class="md-ellipsis">
     2. 设计一个列表
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../3_design_a_up_and_down_list/3_design_a_up_and_down_list/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    3. 设计一个上下选列表
     
   </span>
   
@@ -1495,6 +1557,531 @@
 
 <h1 id="_1">简介</h1>
 <p>本文章使用iic接口的12864点阵屏作为例子</p>
+<h2 id="_2">测试代码</h2>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Arduino.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;U8g2lib.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;MUIU8g2.h&gt;</span>
+
+<span class="cp">#ifdef U8X8_HAVE_HW_SPI</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;SPI.h&gt;</span>
+<span class="cp">#endif</span>
+<span class="cp">#ifdef U8X8_HAVE_HW_I2C</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Wire.h&gt;</span>
+<span class="cp">#endif</span>
+
+
+
+<span class="n">U8G2_SSD1306_128X64_NONAME_1_HW_I2C</span><span class="w"> </span><span class="nf">u8g2</span><span class="p">(</span><span class="n">U8G2_R0</span><span class="p">,</span><span class="w"> </span><span class="cm">/* reset=*/</span><span class="w"> </span><span class="n">U8X8_PIN_NONE</span><span class="p">);</span>
+<span class="c1">//U8G2_SH1107_SEEED_128X128_1_HW_I2C u8g2(U8G2_R0, /* reset=*/ U8X8_PIN_NONE);</span>
+
+
+<span class="c1">// End of constructor list</span>
+
+
+
+<span class="n">MUIU8G2</span><span class="w"> </span><span class="n">mui</span><span class="p">;</span>
+
+
+
+<span class="cm">/*</span>
+<span class="cm">  global variables which form the communication gateway between the user interface and the rest of the code</span>
+<span class="cm">*/</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">number_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w">       </span><span class="c1">// variable where the user can input a number between 0 and 9</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">number_input2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w">       </span><span class="c1">// variable where the user can input a number between 0 and 9</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">fruit_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">fruit_input2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">my_value3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">color_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">food_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">checkbox_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">direction_input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">text_input</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="sc">&#39; &#39;</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">,</span><span class="sc">&#39; &#39;</span><span class="p">}</span><span class="w"> </span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">exit_code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">list_selection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">list_selection2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">list_selection3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint16_t</span><span class="w"> </span><span class="n">list_selection4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">array_pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">array_led_off_time</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_off_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">array_led_on_time</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">};</span>
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">led_on_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">muif_array_pos_selection</span><span class="p">(</span><span class="n">mui_t</span><span class="w"> </span><span class="o">*</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span>
+<span class="w">  </span><span class="k">switch</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_FORM_START</span><span class="p">:</span>
+<span class="w">      </span><span class="n">led_off_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_led_off_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">];</span>
+<span class="w">      </span><span class="n">led_on_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_led_on_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">];</span>
+<span class="w">      </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_FORM_END</span><span class="p">:</span>
+<span class="w">      </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_CURSOR_SELECT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_EVENT_NEXT</span><span class="p">:</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_EVENT_PREV</span><span class="p">:</span>
+<span class="w">      </span><span class="n">array_led_off_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">led_off_time</span><span class="p">;</span>
+<span class="w">      </span><span class="n">array_led_on_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">led_on_time</span><span class="p">;</span>
+<span class="w">      </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<span class="w">      </span><span class="n">led_off_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_led_off_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">];</span>
+<span class="w">      </span><span class="n">led_on_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">array_led_on_time</span><span class="p">[</span><span class="n">array_pos</span><span class="p">];</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="k">default</span><span class="o">:</span>
+<span class="w">      </span><span class="n">return_value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">(</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="n">msg</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">return_value</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">animals</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="s">&quot;Bird&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bison&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Cat&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Crow&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Dog&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Elephant&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fish&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Gnu&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Horse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Koala&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Lion&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Mouse&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Owl&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Rabbit&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Spider&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Turtle&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Zebra&quot;</span><span class="w"> </span><span class="p">};</span>
+
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">list_get_cnt</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="o">*</span><span class="n">animals</span><span class="p">);</span><span class="w">    </span><span class="cm">/* number of animals */</span>
+<span class="p">}</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">list_get_str</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">animals</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="p">}</span>
+
+
+<span class="kt">uint16_t</span><span class="w"> </span><span class="nf">menu_get_cnt</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">    </span><span class="cm">/* number of menu entries */</span>
+<span class="p">}</span>
+
+<span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="nf">menu_get_str</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">data</span><span class="p">,</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">index</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">menu</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">  </span><span class="p">{</span><span class="w"> </span>
+<span class="w">    </span><span class="n">MUI_0</span><span class="w"> </span><span class="s">&quot;Goto Main Menu&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_10</span><span class="w"> </span><span class="s">&quot;Enter a number&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_11</span><span class="w"> </span><span class="s">&quot;Parent/Child Selection&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_13</span><span class="w"> </span><span class="s">&quot;Checkbox&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_14</span><span class="w"> </span><span class="s">&quot;Radio Selection&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_15</span><span class="w"> </span><span class="s">&quot;Text Input&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_16</span><span class="w"> </span><span class="s">&quot;Single Line Selection&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_17</span><span class="w"> </span><span class="s">&quot;List Line Selection&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_18</span><span class="w"> </span><span class="s">&quot;Parent/Child List&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MUI_20</span><span class="w"> </span><span class="s">&quot;Array Edit&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">};</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">menu</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="p">}</span>
+
+
+
+<span class="kt">uint8_t</span><span class="w"> </span><span class="nf">mui_hrule</span><span class="p">(</span><span class="n">mui_t</span><span class="w"> </span><span class="o">*</span><span class="n">ui</span><span class="p">,</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">msg</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="n">u8g2_t</span><span class="w"> </span><span class="o">*</span><span class="n">u8g2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mui_get_U8g2</span><span class="p">(</span><span class="n">ui</span><span class="p">);</span>
+<span class="w">  </span><span class="k">switch</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="k">case</span><span class="w"> </span><span class="no">MUIF_MSG_DRAW</span><span class="p">:</span>
+<span class="w">      </span><span class="n">u8g2_DrawHLine</span><span class="p">(</span><span class="n">u8g2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">mui_get_y</span><span class="p">(</span><span class="n">ui</span><span class="p">),</span><span class="w"> </span><span class="n">u8g2_GetDisplayWidth</span><span class="p">(</span><span class="n">u8g2</span><span class="p">));</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cm">/* </span>
+
+<span class="cm">  User interface fields list. Each entry is defined with the MUIF macro MUIF(id,cflags,data,cb)</span>
+<span class="cm">  Arguments are:</span>
+<span class="cm">    id: </span>
+<span class="cm">      A string with exactly two characters. This is the unique &quot;id&quot; of the field, which is later used in the form definition string (fds)</span>
+<span class="cm">      There are some special id&#39;s: &quot;.L&quot; for text labels and &quot;.G&quot; for a goto form command. </span>
+<span class="cm">    cflags: </span>
+<span class="cm">      Flags, which define static (constant) properties of the field. Currently this is either 0 or MUIF_CFLAG_IS_CURSOR_SELECTABLE which marks the field as editable.</span>
+<span class="cm">    data: </span>
+<span class="cm">      A pointer to a local variable, where the result of an editiable field is stored. Currently this is a pointer to uint8_t in most cases.</span>
+<span class="cm">      It depends in the callback function (cb) whether this is used or what kind of data is stored</span>
+<span class="cm">    cb:</span>
+<span class="cm">      A callback function.</span>
+<span class="cm">      The callback function will receive messages and have to react accordingly to the message. Some predefined callback functions are avilable in mui_u8g2.c    </span>
+
+<span class="cm">*/</span>
+
+
+<span class="n">muif_t</span><span class="w"> </span><span class="n">muif_list</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="cm">/* normal text style */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_FONT_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">u8g2_font_helvR08_tr</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* bold text style */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_FONT_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">u8g2_font_helvB08_tr</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* monospaced font */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_FONT_STYLE</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">u8g2_font_profont12_tr</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* food and drink */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_FONT_STYLE</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">u8g2_font_streamline_food_drink_t</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* horizontal line (hrule) */</span>
+<span class="w">  </span><span class="n">MUIF_RO</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mui_hrule</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* main menu */</span>
+<span class="w">  </span><span class="n">MUIF_RO</span><span class="p">(</span><span class="s">&quot;GP&quot;</span><span class="p">,</span><span class="n">mui_u8g2_goto_data</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_BUTTON</span><span class="p">(</span><span class="s">&quot;GC&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_goto_form_w1_pi</span><span class="p">),</span>
+
+
+<span class="w">  </span><span class="cm">/* Goto Form Button where the width is equal to the size of the text, spaces can be used to extend the size */</span>
+<span class="w">  </span><span class="n">MUIF_BUTTON</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_btn_goto_wm_fi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* input for a number between 0 to 9 */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U8_MIN_MAX</span><span class="p">(</span><span class="s">&quot;IN&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">number_input</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* input for a number between 0 to 100 */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U8_MIN_MAX</span><span class="p">(</span><span class="s">&quot;IH&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">number_input2</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mud_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* input for text with four chars  */</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text_input</span><span class="o">+</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_char_wm_mud_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;T1&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text_input</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_char_wm_mud_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;T2&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text_input</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_char_wm_mud_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;T3&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">text_input</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_char_wm_mud_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* input for a fruit (0..3), implements a selection, where the user can cycle through the options  */</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;IF&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">fruit_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_line_wa_mse_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;IG&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">fruit_input2</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_line_wa_mud_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* checkbox */</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;CB&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">checkbox_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_chkbox_wm_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* the following two fields belong together and implement a single selection combo box to select a color */</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;IC&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">color_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_parent_wm_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;OC&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">color_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_radio_child_w1_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;ID&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">food_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_parent_wm_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">food_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_opt_child_wm_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* radio button style */</span>
+<span class="w">  </span><span class="n">MUIF_VARIABLE</span><span class="p">(</span><span class="s">&quot;RS&quot;</span><span class="p">,</span><span class="o">&amp;</span><span class="n">direction_input</span><span class="p">,</span><span class="n">mui_u8g2_u8_radio_wm_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="n">MUIF_U8G2_U16_LIST</span><span class="p">(</span><span class="s">&quot;L1&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list_selection</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_str</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u16_list_line_wa_mse_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U16_LIST</span><span class="p">(</span><span class="s">&quot;L2&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list_selection2</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_str</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u16_list_line_wa_mud_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="n">MUIF_U8G2_U16_LIST</span><span class="p">(</span><span class="s">&quot;LP&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list_selection3</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_str</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u16_list_parent_wm_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U16_LIST</span><span class="p">(</span><span class="s">&quot;LC&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list_selection3</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_str</span><span class="p">,</span><span class="w"> </span><span class="n">list_get_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u16_list_child_w1_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="n">MUIF_U8G2_U16_LIST</span><span class="p">(</span><span class="s">&quot;LG&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">list_selection4</span><span class="p">,</span><span class="w"> </span><span class="nb">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">menu_get_str</span><span class="p">,</span><span class="w"> </span><span class="n">menu_get_cnt</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u16_list_goto_w1_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* MUI_GOTO uses the fixed &quot;.G&quot; id and is intended for goto buttons. This is a full display width style button */</span><span class="w">  </span>
+<span class="w">  </span><span class="n">MUIF_GOTO</span><span class="p">(</span><span class="n">mui_u8g2_btn_goto_w1_pi</span><span class="p">),</span>
+
+<span class="w">  </span><span class="cm">/* register MUI_LABEL, which is used to place read only text on a form */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_LABEL</span><span class="p">(),</span>
+
+<span class="w">  </span><span class="cm">/* array example */</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U8_MIN_MAX</span><span class="p">(</span><span class="s">&quot;AP&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">array_pos</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">muif_array_pos_selection</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U8_MIN_MAX</span><span class="p">(</span><span class="s">&quot;AF&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">led_off_time</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">),</span>
+<span class="w">  </span><span class="n">MUIF_U8G2_U8_MIN_MAX</span><span class="p">(</span><span class="s">&quot;AN&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">led_on_time</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">mui_u8g2_u8_min_max_wm_mse_pi</span><span class="p">),</span>
+
+<span class="p">};</span>
+
+<span class="cm">/*</span>
+<span class="cm">  The form definition string (fds) defines all forms and the fields on those forms.</span>
+<span class="cm">  A new form always starts with MUI_FORM(u). The form ends with the next MUI_FORM() or the end of the fds.</span>
+<span class="cm">  Inside the form use fields or the style command (MUI_STYLE)</span>
+<span class="cm">  The fields are define with</span>
+<span class="cm">    MUI_XY(id, x, y)                     Field &#39;id&#39; without extra argument or text placed at the specified xy position</span>
+<span class="cm">    MUI_XYT(id, x, y, text)            Field &#39;id&#39; with the specified test at position xy</span>
+<span class="cm">    MUI_XYA(id, x, y, a)                 Field &#39;id&#39; with argument &#39;a&#39; at position xy</span>
+<span class="cm">    MUI_XYAT(id, x, y, a, text)         Field &#39;id&#39; with argument and text placed at position xy</span>
+<span class="cm">    MUI_LABEL(x,y,text)                 Field &#39;.L&#39; (usually some readonly text) placed at position xy</span>
+<span class="cm">    MUI_GOTO(x,y,n,text)                Field &#39;.G&#39;, usually a button placed at xy, which activates form n </span>
+
+<span class="cm">  Note:</span>
+<span class="cm">    MUI_LABEL(x,y,text) is the same as MUI_XYT(&quot;.L&quot;, x, y, text)</span>
+<span class="cm">    MUI_GOTO(x,y,text) is the same as MUI_XYAT(&quot;.G&quot;, x, y, n, text)</span>
+
+<span class="cm">*/</span>
+
+
+
+<span class="n">fds_t</span><span class="w"> </span><span class="n">fds_data</span><span class="p">[]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+
+
+<span class="cm">/* top level main menu */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Main Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_DATA</span><span class="p">(</span><span class="s">&quot;GP&quot;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">MUI_10</span><span class="w"> </span><span class="s">&quot;Enter a number|&quot;</span>
+<span class="w">    </span><span class="n">MUI_11</span><span class="w"> </span><span class="s">&quot;Parent/Child Selection|&quot;</span>
+<span class="w">    </span><span class="n">MUI_13</span><span class="w"> </span><span class="s">&quot;Checkbox|&quot;</span>
+<span class="w">    </span><span class="n">MUI_14</span><span class="w"> </span><span class="s">&quot;Radio Selection|&quot;</span>
+<span class="w">    </span><span class="n">MUI_15</span><span class="w"> </span><span class="s">&quot;Text Input|&quot;</span>
+<span class="w">    </span><span class="n">MUI_16</span><span class="w"> </span><span class="s">&quot;Single Line Selection|&quot;</span>
+<span class="w">    </span><span class="n">MUI_17</span><span class="w"> </span><span class="s">&quot;List Line Selection|&quot;</span>
+<span class="w">    </span><span class="n">MUI_18</span><span class="w"> </span><span class="s">&quot;Parent/Child List|&quot;</span>
+<span class="w">    </span><span class="n">MUI_20</span><span class="w"> </span><span class="s">&quot;Array Edit|&quot;</span>
+<span class="w">    </span><span class="n">MUI_3</span><span class="w"> </span><span class="s">&quot;Alternative Menu&quot;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;GC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;GC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;GC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;GC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span>
+
+
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Alternative Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LG&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LG&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LG&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LG&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span>
+
+
+<span class="cm">/* number entry demo */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Number Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Number [mse]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;IN&quot;</span><span class="p">,</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">27</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">41</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Number [mud]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;IH&quot;</span><span class="p">,</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">41</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* parent / child selection */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Parent/Child Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Color:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;IC&quot;</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;red|orange|yellow|green|cyan|azure|blue|violet|magenta|rose&quot;</span><span class="p">)</span><span class="w">     </span><span class="cm">/* jump to sub form 12 */</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;We need:&quot;</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;ID&quot;</span><span class="p">,</span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w"> </span><span class="mi">21</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\x30</span><span class="s">|</span><span class="se">\x31</span><span class="s">|</span><span class="se">\x32</span><span class="s">|</span><span class="se">\x33</span><span class="s">|</span><span class="se">\x34</span><span class="s">|</span><span class="se">\x35</span><span class="s">|</span><span class="se">\x36</span><span class="s">|</span><span class="se">\x37</span><span class="s">|</span><span class="se">\x38</span><span class="s">|</span><span class="se">\x39</span><span class="s">|</span><span class="se">\x40</span><span class="s">|</span><span class="se">\x41</span><span class="s">|</span><span class="se">\x42</span><span class="s">|</span><span class="se">\x43</span><span class="s">&quot;</span><span class="p">)</span><span class="w"> </span>
+
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+
+<span class="cm">/* combo box color selection */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Color Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="cm">/* takeover the selection text from calling field (&quot;red&quot;) */</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="cm">/* takeover the selection text from calling field (&quot;green&quot;) */</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="cm">/* */</span>
+<span class="cm">/* no ok required, clicking on the selection, will jump back */</span>
+
+<span class="cm">/* Checkbox demo */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Checkbox Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Checkbox:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;CB&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* Radio selection demo */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Radio Selection Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;RS&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;North&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;RS&quot;</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="s">&quot;South&quot;</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;RS&quot;</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="s">&quot;East&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;RS&quot;</span><span class="p">,</span><span class="mi">65</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="s">&quot;West&quot;</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* text demo */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Enter Text Menu&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Text:&quot;</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;T0&quot;</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;T1&quot;</span><span class="p">,</span><span class="mi">48</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;T2&quot;</span><span class="p">,</span><span class="mi">56</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;T3&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* single line selection */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Single Line Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fruit [mse]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;IF&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Banana|Apple|Melon|Cranberry&quot;</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Fruit [mud]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;IG&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Banana|Apple|Melon|Cranberry&quot;</span><span class="p">)</span>
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* long list example with list callback functions */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">17</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;List Line Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;List [mse]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;L1&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;List [mud]:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;L2&quot;</span><span class="p">,</span><span class="mi">60</span><span class="p">,</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">)</span>
+
+
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* parent / child selection */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Parent/Child List&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Animal:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LP&quot;</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w"> </span><span class="mi">19</span><span class="p">)</span><span class="w">     </span><span class="cm">/* jump to sub form 19 */</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+<span class="cm">/* combo box color selection */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Animal Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="cm">/* takeover the selection text from calling field (&quot;red&quot;) */</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="cm">/* takeover the selection text from calling field (&quot;green&quot;) */</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;LC&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="cm">/* */</span>
+<span class="cm">/* no ok required, clicking on the selection, will jump back */</span>
+
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Array Edit&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Position:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;AP&quot;</span><span class="p">,</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">24</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LED off:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;AF&quot;</span><span class="p">,</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">35</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">46</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;LED on:&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;AN&quot;</span><span class="p">,</span><span class="mi">76</span><span class="p">,</span><span class="w"> </span><span class="mi">46</span><span class="p">)</span>
+<span class="n">MUI_XYAT</span><span class="p">(</span><span class="s">&quot;G1&quot;</span><span class="p">,</span><span class="mi">64</span><span class="p">,</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="s">&quot; OK &quot;</span><span class="p">)</span>
+
+
+<span class="cm">/* combo box Food &amp; Drink Selection, called from form 11 */</span>
+<span class="n">MUI_FORM</span><span class="p">(</span><span class="mi">21</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_LABEL</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Food &amp; Drink Selection&quot;</span><span class="p">)</span>
+<span class="n">MUI_XY</span><span class="p">(</span><span class="s">&quot;HR&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="mi">13</span><span class="p">)</span>
+<span class="n">MUI_STYLE</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
+<span class="n">MUI_XYA</span><span class="p">(</span><span class="s">&quot;OD&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">103</span><span class="p">,</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span>
+
+
+<span class="p">;</span>
+
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">setup</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// U8g2 SH1106 Proto-Shield</span>
+<span class="w">  </span><span class="c1">//u8g2.begin(/* menu_select_pin= */ 2, /* menu_next_pin= */ 4, /* menu_prev_pin= */ 7, /* menu_up_pin= */ 6, /* menu_down_pin= */ 5, /* menu_home_pin= */ 3);</span>
+
+<span class="w">  </span><span class="c1">// U8g2 SH1106 MUI Test Shield</span>
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="cm">/* menu_select_pin= */</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="cm">/* menu_next_pin= */</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="cm">/* menu_prev_pin= */</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="cm">/* menu_up_pin= */</span><span class="w"> </span><span class="n">U8X8_PIN_NONE</span><span class="p">,</span><span class="w"> </span><span class="cm">/* menu_down_pin= */</span><span class="w"> </span><span class="n">U8X8_PIN_NONE</span><span class="p">,</span><span class="w"> </span><span class="cm">/* menu_home_pin= */</span><span class="w"> </span><span class="n">U8X8_PIN_NONE</span><span class="p">);</span>
+
+<span class="w">  </span><span class="c1">// DOGS102 Shield (http://shieldlist.org/controlconnection/dogs102)</span>
+<span class="w">  </span><span class="c1">//u8g2.begin(/* menu_select_pin= */ 5, /* menu_next_pin= */ 4, /* menu_prev_pin= */ 2, /* menu_up_pin= */ U8X8_PIN_NONE, /* menu_down_pin= */ U8X8_PIN_NONE, /* menu_home_pin= */ 3);</span>
+
+<span class="w">  </span><span class="c1">// DOGM128 Shield (http://shieldlist.org/schmelle2/dogm128) + DOGXL160 Shield</span>
+<span class="w">  </span><span class="c1">//u8g2.begin(/* menu_select_pin= */ 2, /* menu_next_pin= */ 3, /* menu_prev_pin= */ 7, /* menu_up_pin= */ U8X8_PIN_NONE, /* menu_down_pin= */ U8X8_PIN_NONE, /* menu_home_pin= */ 8);</span>
+
+<span class="w">  </span><span class="c1">// MKR Zero Test Board</span>
+<span class="w">  </span><span class="c1">// u8g2.begin(/*Select=*/ 0, /*Right/Next=*/ 1, /*Left/Prev=*/ 2, /*Up=*/ 4, /*Down=*/ 3, /*Home/Cancel=*/ A6); </span>
+
+<span class="w">  </span><span class="c1">// Arduboy</span>
+<span class="w">  </span><span class="c1">//u8g2.begin(/*Select=*/ A0, /*Right/Next=*/ 5, /*Left/Prev=*/ 9, /*Up=*/ 8, /*Down=*/ 10, /*Home/Cancel=*/ A1); // Arduboy DevKit</span>
+<span class="w">  </span><span class="c1">//u8g2.begin(/*Select=*/ 7, /*Right/Next=*/ A1, /*Left/Prev=*/ A2, /*Up=*/ A0, /*Down=*/ A3, /*Home/Cancel=*/ 8); // Arduboy 10 (Production)</span>
+
+
+<span class="w">  </span><span class="n">u8g2</span><span class="p">.</span><span class="n">setFontMode</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="w">  </span><span class="n">mui</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="n">u8g2</span><span class="p">,</span><span class="w"> </span><span class="n">fds_data</span><span class="p">,</span><span class="w"> </span><span class="n">muif_list</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">muif_list</span><span class="p">)</span><span class="o">/</span><span class="k">sizeof</span><span class="p">(</span><span class="n">muif_t</span><span class="p">));</span>
+<span class="w">  </span><span class="n">mui</span><span class="p">.</span><span class="n">gotoForm</span><span class="p">(</span><span class="cm">/* form_id= */</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cm">/* initial_cursor_position= */</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">uint8_t</span><span class="w"> </span><span class="n">is_redraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="cm">/* check whether the menu is active */</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">mui</span><span class="p">.</span><span class="n">isFormActive</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="p">{</span>
+
+<span class="w">    </span><span class="cm">/* if so, then draw the menu */</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">is_redraw</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">u8g2</span><span class="p">.</span><span class="n">firstPage</span><span class="p">();</span>
+<span class="w">      </span><span class="k">do</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">mui</span><span class="p">.</span><span class="n">draw</span><span class="p">();</span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">(</span><span class="w"> </span><span class="n">u8g2</span><span class="p">.</span><span class="n">nextPage</span><span class="p">()</span><span class="w"> </span><span class="p">);</span>
+<span class="w">      </span><span class="n">is_redraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="cm">/* handle events */</span>
+
+<span class="w">    </span><span class="k">switch</span><span class="p">(</span><span class="n">u8g2</span><span class="p">.</span><span class="n">getMenuEvent</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="no">U8X8_MSG_GPIO_MENU_SELECT</span><span class="p">:</span>
+<span class="w">        </span><span class="n">mui</span><span class="p">.</span><span class="n">sendSelect</span><span class="p">();</span>
+<span class="w">        </span><span class="n">is_redraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="no">U8X8_MSG_GPIO_MENU_NEXT</span><span class="p">:</span>
+<span class="w">        </span><span class="n">mui</span><span class="p">.</span><span class="n">nextField</span><span class="p">();</span>
+<span class="w">        </span><span class="n">is_redraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="no">U8X8_MSG_GPIO_MENU_PREV</span><span class="p">:</span>
+<span class="w">        </span><span class="n">mui</span><span class="p">.</span><span class="n">prevField</span><span class="p">();</span>
+<span class="w">        </span><span class="n">is_redraw</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="w">  </span><span class="p">{</span>
+<span class="w">    </span><span class="cm">/* do something else, maybe clear the screen */</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="p">}</span>
+</code></pre></div>
 
 
 

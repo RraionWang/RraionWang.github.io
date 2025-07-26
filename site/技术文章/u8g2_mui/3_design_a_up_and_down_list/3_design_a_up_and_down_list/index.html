@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://RraionWang.github.io/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/FreeCAD/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/">
+        <link rel="canonical" href="https://RraionWang.github.io/%E6%8A%80%E6%9C%AF%E6%96%87%E7%AB%A0/u8g2_mui/3_design_a_up_and_down_list/3_design_a_up_and_down_list/">
       
       
-        <link rel="prev" href="../../../DXF%E5%90%88%E9%9B%86/XIAO_Grove_Sensor/ultrasonic_distance_sensor/">
+        <link rel="prev" href="../../2_design_a_list/2_design_a_list/">
       
       
-        <link rel="next" href="../../../../%E7%AE%80%E5%8E%86%E5%86%85%E6%8E%A8/%E5%86%85%E6%8E%A8/">
+        <link rel="next" href="../../../ESP-IDF/esp_idf_1_config_env/esp_idf_1_config_env/">
       
       
       <link rel="icon" href="../../../../images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>使用FreeCAD设计dxf文件 - 狮子Rraion的网站</title>
+        <title>3. 设计一个上下选列表 - 狮子Rraion的网站</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#freecaddxf" class="md-skip">
+        <a href="#_1" class="md-skip">
           Skip to content
         </a>
       
@@ -109,7 +109,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              使用FreeCAD设计dxf文件
+              3. 设计一个上下选列表
             
           </span>
         </div>
@@ -577,6 +577,8 @@
                 
   
   
+    
+  
   
   
     
@@ -586,11 +588,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" checked>
         
           
           <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
@@ -605,7 +607,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_4_2">
             <span class="md-nav__icon md-icon"></span>
             mui
@@ -619,7 +621,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../u8g2_mui/1_index/1_index/" class="md-nav__link">
+      <a href="../../1_index/1_index/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -641,7 +643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../u8g2_mui/2_design_a_list/2_design_a_list/" class="md-nav__link">
+      <a href="../../2_design_a_list/2_design_a_list/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -660,10 +662,31 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../../../u8g2_mui/3_design_a_up_and_down_list/3_design_a_up_and_down_list/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    3. 设计一个上下选列表
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -673,6 +696,44 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1349,8 +1410,6 @@
                 
   
   
-    
-  
   
   
     
@@ -1360,11 +1419,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_12" >
         
           
           <label class="md-nav__link" for="__nav_4_12" id="__nav_4_12_label" tabindex="0">
@@ -1379,7 +1438,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_12_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4_12">
             <span class="md-nav__icon md-icon"></span>
             FreeCAD
@@ -1390,31 +1449,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  <span class="md-ellipsis">
-    使用FreeCAD设计dxf文件
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../../FreeCAD/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/%E4%BD%BF%E7%94%A8FreeCAD%E8%AE%BE%E8%AE%A1dxf%E6%96%87%E4%BB%B6/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1424,53 +1462,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      前言
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dxf" class="md-nav__link">
-    <span class="md-ellipsis">
-      快速生成盒子dxf
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#freecaddxf_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      使用FreeCAD打开下载的盒子dxf文件
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -1573,24 +1564,9 @@
   
 
 
-<h1 id="freecaddxf">使用FreeCAD设计dxf文件</h1>
-<h2 id="_1">前言</h2>
-<p>当我们希望为自己的产品设计一些结构的时候，激光切割和3D打印是常见的方法，对于一些简单的结构，激光切割的速度远快于3D打印，本篇教程就介绍一下如何使用FreeCAD进行简单的dxf的设计</p>
-<h2 id="dxf">快速生成盒子dxf</h2>
-<p>首先<a href="https://boxes.hackerspace-bamberg.de/?language=zh_CN">Boxes.py</a>这个网站可以很快速地生成盒子外观并且有多种选项。
-<img alt="alt text" src="../image.png" />
-我们选择最简单的六边形盒子作为例子
-<img alt="alt text" src="../image-1.png" /></p>
-<p>接下来我们会对盒子做一些定制化的设计。</p>
-<h2 id="freecaddxf_1">使用FreeCAD打开下载的盒子dxf文件</h2>
-<p><img alt="alt text" src="../image-2.png" />
-<img alt="alt text" src="../image-3.png" />
-<img alt="alt text" src="../image-4.png" />
-<img alt="alt text" src="../image-5.png" /></p>
-<p>点击创建草图之后，我们就会得到一个可以编辑的界面</p>
-<p><img alt="alt text" src="../image-6.png" /></p>
-<p>假设我希望在盒子的每一个面的中心都添加一个圆孔，我们就可以放置一个圆形，并且添加约束</p>
-<p><img alt="alt text" src="../image-7.png" /></p>
+<h1 id="_1">设计一个可以上下移动的菜单</h1>
+<h2 id="_2">概述</h2>
+<h2 id="_3">代码</h2>
 
 
 
