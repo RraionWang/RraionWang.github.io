@@ -66,7 +66,7 @@ social:
   <div class="card-grid">
     <!-- 第一行 -->
 
-  <a href="https://www.douyin.com/user/MS4wLjABAAAAt0bjcMFCWemsRqxjYUwDQ69oOSGnuadn7O4pPcZsvLTLAmNTebMhmTKkYuy_qEsA?from_tab_name=main" class="social-card" data-img="douyin.jpg">
+  <a href="https://www.douyin.com/user/MS4wLjABAAAAa-aFDBgBi9vwKN5Qb-S166nXqGuGiXixRS9dMs1H3_yIf4DjVXHouvgHb1Ia772v?from_tab_name=main" class="social-card" data-img="douyin.jpg">
     <img src="douyin.jpg" alt="douyin" class="card-image"
       />
     <div class="card-content">
@@ -110,7 +110,6 @@ social:
 
 - 在使用技术中的任何疑问
 - 你觉得有意思可以上榜的项目
-- 希望和Seeed合作或者内推
 - 仓库的PR..
 
 

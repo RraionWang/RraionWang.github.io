@@ -47,13 +47,9 @@ extra_css:
 
 nav:
   - Home: index.md
-  - 标签: tag.md
+  # - 标签: tag.md
   - 开源项目:
       - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
-
-  - 空间数字化:
-      - 索引: digital_inov/0_index/0_index.md
-      - 1. yolo logo项目: digital_inov/1_yolo_logo_project/1_yolo_logo_project.md
 
   - 技术文章:
       - U8g2:
@@ -89,6 +85,6 @@ nav:
               - 超声波距离传感器: 技术文章/DXF合集/XIAO_Grove_Sensor/ultrasonic_distance_sensor.md
       - FreeCAD:
           - 使用FreeCAD设计dxf文件: 技术文章/FreeCAD/使用FreeCAD设计dxf文件/使用FreeCAD设计dxf文件.md
-  - 简历内推: 简历内推/内推.md
+
   - 个人简介: 个人简介/个人简介.md
-  - 友情链接: 友情链接/友情链接.md
+
