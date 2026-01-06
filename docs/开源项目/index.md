@@ -71,12 +71,12 @@
       <h3 class="card-title">esp32s3 gameboy</h3>
     </div>
   </a>
-  
+
   <a href="/%E5%BC%80%E6%BA%90%E9%A1%B9%E7%9B%AE/esp32s3_cam/" class="social-card" data-img="esp32s3_cam.png">
     <img src="/assets/projects/esp32s3_cam.png" alt="douyin" class="card-image"
       />
     <div class="card-content">
-      <h3 class="card-title">esp32cs3 小相机</h3>
+      <h3 class="card-title">esp32s3 小相机</h3>
     </div>
   </a>
 
