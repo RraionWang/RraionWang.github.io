@@ -9,3 +9,6 @@
 |电池|500mAh锂电池|
 |屏幕|1.33寸 240x240 IPS|
 |外观|白色|
+
+## 开源链接
+[点击这里](https://github.com/RraionWang/meme_player_use_es8311/tree/main)
