@@ -86,8 +86,8 @@ social:
   <div class="card-grid">
     <!-- 第一行 -->
 
-  <a href="/site/产品里程碑/index.html" class="social-card" data-img="product.png">
-    <img src="/site/assets/product.png" alt="产品里程碑" class="card-image"
+  <a href="/产品里程碑/index.html" class="social-card" data-img="product.png">
+    <img src="/assets/product.png" alt="产品里程碑" class="card-image"
       />
     <div class="card-content">
      <div class="card-title">产品里程碑</div>
@@ -96,8 +96,8 @@ social:
     </div>
   </a>
 
-  <a href="/site/我的故事/index.html" class="social-card" data-img="mystory.png">
-    <img src="/site/assets/mystory.png" alt="我的故事" class="card-image"
+  <a href="/我的故事/index.html" class="social-card" data-img="mystory.png">
+    <img src="/assets/mystory.png" alt="我的故事" class="card-image"
       />
     <div class="card-content">
       <div class="card-title">我的小红书之旅</div>
@@ -106,8 +106,8 @@ social:
   </a>
 
 
-  <a href="/site/名字故事/index.html" class="social-card" data-img="/site/assets/sig2.png">
-    <img src="/site/assets/sig2.png" alt="Rraion的名字故事" class="card-image"
+  <a href="/名字故事/index.html" class="social-card" data-img="/assets/sig2.png">
+    <img src="/assets/sig2.png" alt="Rraion的名字故事" class="card-image"
       />
     <div class="card-content">
              <div class="card-title">Rraion怎么读？</div>
@@ -125,8 +125,8 @@ social:
   <div class="card-grid">
     <!-- 第一行 -->
 
-  <a href="https://www.douyin.com/user/MS4wLjABAAAAa-aFDBgBi9vwKN5Qb-S166nXqGuGiXixRS9dMs1H3_yIf4DjVXHouvgHb1Ia772v?from_tab_name=main" class="social-card" data-img="/site/assets/douyin.jpg">
-    <img src="/site/assets/douyin.jpg" alt="douyin" class="card-image"
+  <a href="https://www.douyin.com/user/MS4wLjABAAAAa-aFDBgBi9vwKN5Qb-S166nXqGuGiXixRS9dMs1H3_yIf4DjVXHouvgHb1Ia772v?from_tab_name=main" class="social-card" data-img="/assets/douyin.jpg">
+    <img src="/assets/douyin.jpg" alt="douyin" class="card-image"
       />
     <div class="card-content">
             <div class="card-title">抖音</div>
@@ -134,8 +134,8 @@ social:
     </div>
   </a>
 
-  <a href="https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0" class="social-card" data-img="/site/assets/bilibili.jpg">
-    <img src="/site/assets/bilibili.jpg" alt="BiliBili" class="card-image"
+  <a href="https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0" class="social-card" data-img="/assets/bilibili.jpg">
+    <img src="/assets/bilibili.jpg" alt="BiliBili" class="card-image"
       />
     <div class="card-content">
             <div class="card-title">B站</div>
@@ -144,8 +144,8 @@ social:
   </a>
 
 
-  <a href="https://www.youtube.com/@rraion4theworld" class="social-card" data-img="/site/assets/youtube.jpg">
-    <img src="/site/assets/youtube.jpg" alt="YouTube" class="card-image"
+  <a href="https://www.youtube.com/@rraion4theworld" class="social-card" data-img="/assets/youtube.jpg">
+    <img src="/assets/youtube.jpg" alt="YouTube" class="card-image"
       />
     <div class="card-content">
              <div class="card-title">油管</div>
