@@ -44,6 +44,11 @@ markdown_extensions:
 extra_css:
   - stylesheets/card_container.css
   - stylesheets/banner.css
+  - stylesheets/gantt.css
+
+extra_javascript:
+  - scripts/gantt.js
+  - scripts/gantt-init.js
 
 nav:
   - Home: index.md
@@ -91,6 +96,7 @@ nav:
   - 小红书创业:
       - 致谢列表: 小红书/致谢列表.md
       - 我的故事: 小红书/我的故事.md
+      - 产品里程碑: 小红书/产品里程碑.md
 
   - 个人简介: 个人简介/个人简介.md
 
