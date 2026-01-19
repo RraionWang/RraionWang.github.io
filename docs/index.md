@@ -8,8 +8,6 @@ social:
 
 # Home
 
-
-
 ## 致谢
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 
@@ -88,8 +86,8 @@ social:
   <div class="card-grid">
     <!-- 第一行 -->
 
-  <a href="/site/小红书/产品里程碑/index.html" class="social-card" data-img="product.png">
-    <img src="/site/assets/product.png" alt="douyin" class="card-image"
+  <a href="/site/产品里程碑/index.html" class="social-card" data-img="product.png">
+    <img src="/site/assets/product.png" alt="产品里程碑" class="card-image"
       />
     <div class="card-content">
      <div class="card-title">产品里程碑</div>
@@ -98,7 +96,7 @@ social:
     </div>
   </a>
 
-  <a href="/site/小红书/我的故事/index.html" class="social-card" data-img="mystory.png">
+  <a href="/site/我的故事/index.html" class="social-card" data-img="mystory.png">
     <img src="/site/assets/mystory.png" alt="我的故事" class="card-image"
       />
     <div class="card-content">
@@ -108,8 +106,8 @@ social:
   </a>
 
 
-  <a href="/site/小红书/名字故事/index.html" class="social-card" data-img="/site/assets/sig2.png">
-    <img src="/site/assets/sig2.png" alt="YouTube" class="card-image"
+  <a href="/site/名字故事/index.html" class="social-card" data-img="/site/assets/sig2.png">
+    <img src="/site/assets/sig2.png" alt="Rraion的名字故事" class="card-image"
       />
     <div class="card-content">
              <div class="card-title">Rraion怎么读？</div>
