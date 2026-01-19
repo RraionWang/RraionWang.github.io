@@ -42,7 +42,7 @@ markdown_extensions:
           format: !!python/name:pymdownx.superfences.fence_code_format
 
 extra_css:
-  - stylesheets/card_container.css
+  
   - stylesheets/banner.css
   - stylesheets/gantt.css
 
@@ -51,13 +51,20 @@ extra_javascript:
   - scripts/gantt-init.js
 
 nav:
-  - Home: index.md
-  # - 标签: tag.md
-  - 开源项目: 
-      - 开源项目: 开源项目/index.md
-      - esp32c3定时器: 开源项目/esp32c3_timer.md
 
-      # - R2HUB75: 开源项目/R2HUB75/R2HUB75.md
+  - Home: index.md
+  
+  - 小红书: 
+    - 我的故事: 小红书/我的故事.md
+    - 产品里程碑: 小红书/产品里程碑.md
+    - 产品细节: 
+          - 🐱meme玩具: 小红书/产品细节/meme玩具.md
+          - 📸小照相机: 小红书/产品细节/小照相机.md
+
+  # - 标签: tag.md
+  
+
+  
 
   - 技术文章:
       - U8g2:
@@ -93,10 +100,7 @@ nav:
               - 超声波距离传感器: 技术文章/DXF合集/XIAO_Grove_Sensor/ultrasonic_distance_sensor.md
       - FreeCAD:
           - 使用FreeCAD设计dxf文件: 技术文章/FreeCAD/使用FreeCAD设计dxf文件/使用FreeCAD设计dxf文件.md
-  - 小红书创业:
-      - 致谢列表: 小红书/致谢列表.md
-      - 我的故事: 小红书/我的故事.md
-      - 产品里程碑: 小红书/产品里程碑.md
 
-  - 个人简介: 个人简介/个人简介.md
+
+
 

@@ -6,16 +6,37 @@ social:
 ---
 
 
-## 找到🦁
+# Home
+
+
+
+## 致谢
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- Element to contain animated typing -->
+  <span id="element"></span>
+
+  <!-- Load library from the CDN -->
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
+  <!-- Setup and start animation! -->
+  <script>
+    var typed = new Typed('#element', {
+      strings: ['感谢 大蒜头莎莉  三七三七 荔枝lan Sucr3odE 寻月人🌙 夏天 十六夜里偷吃零食 马思唯心小甜豆 沁酒 选购我的产品'],
+      typeSpeed: 100,
+      loop: true,
+    });
+  </script>
+</body>
+
 
 
 <style>
 
-
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
+      gap: 30px;
     }
 
     .social-card {
@@ -35,29 +56,30 @@ social:
     .social-card:hover {
       transform: translateY(-5px);
     }
+.card-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block; /* 消除图片底部空隙 */
+}
 
-    .card-image {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      /* 正方形 */
-      object-fit: cover;
-    }
+.card-content {
+  padding: 12px; /* 统一缩小内边距 */
+}
 
-    .card-content {
-      padding: 15px;
-    }
+.card-title {
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  margin: 6px 0 2px;
+  color: #333;
+}
 
-    .card-title {
-      margin: 0 0 8px;
-      font-size: 10px;
-      font-weight: bold;
-    }
-
-    .card-desc {
-      margin: 0;
-      font-size: 13px;
-      color: #666
-    }
+.card-desc {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
   </style>
 
 
@@ -66,43 +88,81 @@ social:
   <div class="card-grid">
     <!-- 第一行 -->
 
-  <a href="https://www.douyin.com/user/MS4wLjABAAAAa-aFDBgBi9vwKN5Qb-S166nXqGuGiXixRS9dMs1H3_yIf4DjVXHouvgHb1Ia772v?from_tab_name=main" class="social-card" data-img="douyin.jpg">
-    <img src="douyin.jpg" alt="douyin" class="card-image"
+  <a href="/site/小红书/产品里程碑/index.html" class="social-card" data-img="product.png">
+    <img src="/site/assets/product.png" alt="douyin" class="card-image"
       />
     <div class="card-content">
-      <h3 class="card-title">抖音</h3>
+     <div class="card-title">产品里程碑</div>
+
+      <p class="card-desc">点击查看狮子的产品开发进度</p>
+    </div>
+  </a>
+
+  <a href="/site/小红书/我的故事/index.html" class="social-card" data-img="mystory.png">
+    <img src="/site/assets/mystory.png" alt="我的故事" class="card-image"
+      />
+    <div class="card-content">
+      <div class="card-title">我的小红书之旅</div>
+      <p class="card-desc">点击了解一切的开始</p>
+    </div>
+  </a>
+
+
+  <a href="/site/小红书/名字故事/index.html" class="social-card" data-img="/site/assets/sig2.png">
+    <img src="/site/assets/sig2.png" alt="YouTube" class="card-image"
+      />
+    <div class="card-content">
+             <div class="card-title">Rraion怎么读？</div>
+      <p class="card-desc">名字背后的故事</p>
+    </div>
+  </a>
+
+
+
+  </div>
+
+## 我的社媒
+
+
+  <div class="card-grid">
+    <!-- 第一行 -->
+
+  <a href="https://www.douyin.com/user/MS4wLjABAAAAa-aFDBgBi9vwKN5Qb-S166nXqGuGiXixRS9dMs1H3_yIf4DjVXHouvgHb1Ia772v?from_tab_name=main" class="social-card" data-img="/site/assets/douyin.jpg">
+    <img src="/site/assets/douyin.jpg" alt="douyin" class="card-image"
+      />
+    <div class="card-content">
+            <div class="card-title">抖音</div>
       <p class="card-desc">MakerRraion</p>
     </div>
   </a>
 
-  <a href="https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0" class="social-card" data-img="bilibili.jpg">
-    <img src="bilibili.jpg" alt="BiliBili" class="card-image"
+  <a href="https://space.bilibili.com/3546647762045462?spm_id_from=333.1007.0.0" class="social-card" data-img="/site/assets/bilibili.jpg">
+    <img src="/site/assets/bilibili.jpg" alt="BiliBili" class="card-image"
       />
     <div class="card-content">
-      <h3 class="card-title">BiliBili</h3>
+            <div class="card-title">B站</div>
       <p class="card-desc">3546647762045462</p>
     </div>
   </a>
 
-  <a href="https://www.linkedin.com/in/%E5%B2%A9%E6%9D%BE-%E6%B1%AA-7a469b357/?locale=en_US" class="social-card" data-img="linkin.jpg">
-    <img src="linkin.jpg" alt="LinkedIn" class="card-image"
-      />
-    <div class="card-content">
-      <h3 class="card-title">LinkedIn</h3>
-      <p class="card-desc">Rraion Wang</p>
-    </div>
-  </a>
 
-  <a href="https://www.youtube.com/@rraion4theworld" class="social-card" data-img="youtube.jpg">
-    <img src="youtube.jpg" alt="YouTube" class="card-image"
+  <a href="https://www.youtube.com/@rraion4theworld" class="social-card" data-img="/site/assets/youtube.jpg">
+    <img src="/site/assets/youtube.jpg" alt="YouTube" class="card-image"
       />
     <div class="card-content">
-      <h3 class="card-title">YouTube</h3>
+             <div class="card-title">油管</div>
       <p class="card-desc">@rraion4theworld</p>
     </div>
   </a>
 
+
+
+
+
   </div>
+
+
+
 
 ## 讨论区
 
@@ -127,11 +187,3 @@ social:
         async>
 </script>
 
-
-
-<!-- 
-## 项目列表
-|名称|地址|说明|
-|-|-|-|
-|R2HUB75|[点击跳转](https://rraionwang.github.io/开源项目/R2HUB75/R2HUB75/)|使用ESP32+HUB75做好玩的交互项目|
- -->
