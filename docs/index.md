@@ -83,8 +83,22 @@ social:
 
 
 
+
+
   <div class="card-grid">
     <!-- 第一行 -->
+
+
+  <a href="/了解我/index.html" class="social-card" data-img="/assets/sig3.png">
+    <img src="/assets/sig3.png" alt="了解我" class="card-image"
+      />
+    <div class="card-content">
+             <div class="card-title">了解我</div>
+      <p class="card-desc">友情和关系的开始</p>
+    </div>
+  </a>
+
+
 
   <a href="/产品里程碑/index.html" class="social-card" data-img="product.png">
     <img src="/assets/product.png" alt="产品里程碑" class="card-image"
@@ -106,14 +120,6 @@ social:
   </a>
 
 
-  <a href="/名字故事/index.html" class="social-card" data-img="/assets/sig2.png">
-    <img src="/assets/sig2.png" alt="Rraion的名字故事" class="card-image"
-      />
-    <div class="card-content">
-             <div class="card-title">Rraion怎么读？</div>
-      <p class="card-desc">名字背后的故事</p>
-    </div>
-  </a>
 
 
 
