@@ -34,7 +34,7 @@ social:
     .card-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
+      gap: 20px;
     }
 
     .social-card {
@@ -78,6 +78,21 @@ social:
   font-size: 12px;
   color: #666;
 }
+
+/* 手机端：缩小 了解我 模块标题和副标题 */
+@media (max-width: 600px) {
+  .card-title {
+    font-size: 10px;     /* 原来是 20px */
+    margin: 4px 0 2px;
+  }
+
+  .card-desc {
+    font-size: 8px;     /* 原来是 12px */
+    line-height: 1.3;
+  }
+}
+
+
   </style>
 
 
