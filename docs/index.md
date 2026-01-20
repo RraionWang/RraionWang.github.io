@@ -119,9 +119,9 @@ social:
     <img src="/assets/product.png" alt="产品里程碑" class="card-image"
       />
     <div class="card-content">
-     <div class="card-title">产品里程碑</div>
+     <div class="card-title">产品里程</div>
 
-      <p class="card-desc">点击查看狮子的产品开发进度</p>
+      <p class="card-desc">产品开发进度</p>
     </div>
   </a>
 
@@ -130,7 +130,7 @@ social:
       />
     <div class="card-content">
       <div class="card-title">我的小红书之旅</div>
-      <p class="card-desc">点击了解一切的开始</p>
+      <p class="card-desc">了解一切的开始</p>
     </div>
   </a>
 
