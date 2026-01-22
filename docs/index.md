@@ -20,7 +20,7 @@ social:
   <!-- Setup and start animation! -->
   <script>
     var typed = new Typed('#element', {
-      strings: ['感谢 大蒜头莎莉  三七三七 荔枝lan Sucr3odE 寻月人🌙 夏天 十六夜里偷吃零食 马思唯心小甜豆 沁酒 选购我的产品'],
+      strings: ['感谢 大蒜头莎莉  三七三七 荔枝lan Sucr3odE 寻月人🌙 夏天 十六夜里偷吃零食 马思唯心小甜豆 沁酒 55555 选购我的产品'],
       typeSpeed: 100,
       loop: true,
     });
