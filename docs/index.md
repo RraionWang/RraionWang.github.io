@@ -119,7 +119,7 @@ social:
     <img src="/assets/product.png" alt="产品里程碑" class="card-image"
       />
     <div class="card-content">
-     <div class="card-title">产品里程</div>
+     <div class="card-title">独立开发产品里程</div>
       <p class="card-desc">产品开发进度</p>
     </div>
   </a>
